@@ -2,7 +2,7 @@
     align-items: flex-start;
 }
 .checkoutContainer {
-    width: calc(100% - 300px);
+    width: 100%;
 }
 .checkoutStep {
     box-sizing: border-box;
@@ -16,7 +16,7 @@
     padding: 10px 20px;
 }
 .checkoutHeader.active {
-    background: #2874f0;
+    background: #f0b128;
 }
 .checkoutHeader .stepNumber {
     display: inline-block;
@@ -34,12 +34,13 @@
 .stepTitle {
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: #878787;
     margin-left: 15px;
 }
 .checkoutHeader.active .stepTitle {
-    color: #fff;
+    color: #000;
+    font-weight: 600;
 }
 .loggedInId {
     font-size: 12.5px;

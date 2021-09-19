@@ -92,8 +92,8 @@ const ProductDetailsPage = (props) => {
             <div className="productDetails">
               <div className="productDetails-title">
                 <p className="productTitle">{product.productDetails?.name}</p>
-                <InStock InStock={product.productDetails?.quantity} />
-                {/* <p className="productInStock">In stock: {product.productDetails?.quantity}</p> */}
+                {/* <InStock InStock={product.productDetails?.quantity} /> */}
+                <p className="productInStock">In stock: {product.productDetails?.quantity}</p>
               </div>
               <div className="priceContainer">
                 <span className="price">

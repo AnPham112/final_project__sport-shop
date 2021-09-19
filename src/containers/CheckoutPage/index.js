@@ -275,7 +275,6 @@ const CheckoutPage = (props) => {
               </>
             }
           />
-
           {/* AddressForm */}
           {confirmAddress ? null : newAddress ?
             (
@@ -330,7 +329,6 @@ const CheckoutPage = (props) => {
                   style={{ padding: "10px 16px", justifyContent: 'flex-end', marginTop: '0.5rem' }}
                 />
               </div>
-
             </Card>
           )}
           <CheckoutStep
@@ -339,23 +337,21 @@ const CheckoutPage = (props) => {
             active={paymentOption}
             body={
               paymentOption && (
-                <div>
-                  <div
-                    className="flexRow"
-                    style={{
-                      alignItems: "center",
-                      padding: "20px",
-                    }}
-                  >
-                    <input type="radio" name="paymentOption" value="cod" />
-                    <div>Cash on delivery</div>
-                  </div>
+                <div style={{ display: 'flex' }}>
                   <Button
-                    title="Confirm order"
+                    title="Cash on delivery"
                     onClick={onConfirmOrder}
                     style={{
                       padding: "10px 16px",
-                      margin: "0 0 20px 20px",
+                      margin: "10px 0px 20px 20px",
+                    }}
+                  />
+                  <Button
+                    title="Cash in Advance"
+                    onClick={onConfirmOrder}
+                    style={{
+                      padding: "10px 16px",
+                      margin: "10px 0px 20px 20px",
                     }}
                   />
                 </div>
@@ -363,17 +359,6 @@ const CheckoutPage = (props) => {
             }
           />
         </div>
-
-        {/* Price Component */}
-        <PriceDetails
-          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
-          }, 0)}
-          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
-          }, 0)}
-        />
       </div>
     </Layout >
   );

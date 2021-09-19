@@ -59,16 +59,6 @@ const Review = (props) => {
 
   return (
     <>
-      <h3>Reviews</h3>
-      <UserReviews
-        reviews={reviews}
-        stars={stars}
-        product={prod}
-        colors={colors}
-        page={page}
-      />
-      <Pagination totalPages={totalPages} changePage={onHandleChangePage} />
-      <h3>Write your feedback</h3>
       <div className="writeFeedback">
         <div style={{ textAlign: 'center', marginBottom: '0.3rem' }}>
           {stars.map((star, index) => {
@@ -118,6 +108,16 @@ const Review = (props) => {
           </button>
         </form>
       </div>
+      <h3>Customer feedbacks</h3>
+      <UserReviews
+        reviews={reviews}
+        stars={stars}
+        product={prod}
+        colors={colors}
+        page={page}
+      />
+      <Pagination totalPages={totalPages} changePage={onHandleChangePage} />
+
     </>
   );
 }
