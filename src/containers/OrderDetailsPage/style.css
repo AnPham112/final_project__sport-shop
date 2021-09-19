@@ -1,0 +1,101 @@
+.orderDetailsPage-container {
+    width: 1120px;
+    margin: 10px auto;
+}
+.delAdrContainer {
+    box-sizing: border-box;
+}
+.delAdrDetails {
+    padding: 20px;
+}
+.delName-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.delName {
+    font-size: 1rem;
+}
+.delAddress-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.delAddress {
+    font-size: 1rem;
+}
+.delPhoneNumber-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.delPhoneNumber {
+    font-size: 1rem;
+}
+.delItem-conatiner {
+    width: 220px;
+    padding: 20px;
+}
+.delItemName {
+    font-size: 1rem;
+}
+.delItemImgContainer {
+    padding: 20px 0;
+    width: 75px;
+    overflow: hidden;
+    text-align: center;
+}
+.deliveryTrack-container {
+    padding: 30px 50px;
+}
+.delItemImgContainer > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.orderTrack {
+    width: 400px;
+    display: flex;
+}
+.orderStatus {
+    width: 33.33%;
+    height: 3px;
+    background: #777;
+    position: relative;
+    font-size: 12px;
+}
+.orderStatus.active {
+    background: #26a541;
+}
+.orderStatus:last-child {
+    width: 0;
+}
+.orderStatus .point {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #777;
+    top: -3px;
+}
+.orderStatus .point.active {
+    background-color: #26a541;
+}
+.orderInfo {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -26px;
+    transform: translateX(-50%);
+}
+.orderInfo .status {
+    color: #26a541;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.orderInfo .date {
+    font-size: 10px;
+}
+.deliveryDate {
+    font-size: 1rem;
+    padding: 20px;
+}

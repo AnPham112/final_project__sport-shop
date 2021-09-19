@@ -1,0 +1,7 @@
+input[type="radio"] {
+    display: none;
+}
+.star-rating {
+    cursor: pointer;
+    transition: color 250ms;
+}

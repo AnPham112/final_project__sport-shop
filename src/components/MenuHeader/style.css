@@ -1,0 +1,71 @@
+.menuHeader {
+    width: 75rem;
+    max-width: 100%;
+    height: 2.5rem;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: -2px 2px 6px #333;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+.menuHeader ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menuHeader > ul {
+    display: flex;
+    /* margin: 0 50px;
+    justify-content: space-evenly; */
+}
+.menuHeader > ul > li {
+    width: 25%;
+}
+.menuHeader > ul > li > span {
+    display: block;
+    line-height: 2.5rem;
+    cursor: pointer;
+    padding: 0 1.25rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+.menuHeader > ul > li > span:hover {
+    color: rgba(75, 8, 138, 0.8);
+}
+.menuHeader > ul > li > ul {
+    padding: 1rem 0;
+    position: absolute;
+    background: #fff;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    z-index: 1;
+    box-shadow: -2px 2px 4px #333;
+}
+.menuHeader > ul > li:hover ul {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+.menuHeader > ul > li > ul > li:first-child {
+    margin-left: 1.25rem;
+    float: left;
+    width: 25%;
+}
+.menuHeader > ul > li > ul > li:not(:first-child) {
+    float: left;
+    width: 25%;
+}
+.menuHeader > ul > li > ul > li > a {
+    font-weight: bold;
+    display: block;
+}
+.menuHeader > ul > li > ul > li a {
+    padding: 3px 0;
+    display: block;
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: #686868;
+}

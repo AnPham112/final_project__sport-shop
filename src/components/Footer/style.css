@@ -1,0 +1,117 @@
+.footer {
+    background-color: rgba(20, 45, 52, 0.9);
+    display: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+}
+.copyright {
+    background-color: #000;
+    color: rgb(288, 81, 29);
+    text-align: center;
+    padding: 0.4rem 0;
+}
+.main-content {
+    display: flex;
+}
+.main-content .box {
+    flex-basis: 50%;
+    padding: 10px 20px;
+}
+.left {
+    flex: 4;
+}
+.center {
+    flex: 4;
+}
+.right {
+    flex: 4;
+}
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.left .content p {
+    margin: 0;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+}
+.left .content .social {
+    margin: 1rem 0 0 0;
+}
+.left .content .social span {
+    margin: 0 0.5rem 0 0;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    background-color: #1a1a1a;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+.left .content .social span:hover {
+    background-color: #c91c1c;
+}
+.social-icon {
+    font-size: 1rem;
+}
+.center .content .location,
+.center .content .phone {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+.center .content .email {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+.center .content .location .text {
+    margin-left: 0.5rem;
+}
+.center .content .email .text {
+    margin-left: 0.5rem;
+}
+.center .content .phone .text {
+    margin-left: 0.5rem;
+}
+.right .content {
+    display: flex;
+    flex-direction: column;
+}
+.right .email-label,
+.right .message-label {
+    display: block;
+    font-size: 1.2rem;
+}
+.right .email-input,
+.right .message-input {
+    margin-top: 0.2rem;
+    width: 90%;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    background-color: rgba(14, 29, 33, 0.9);
+    border: 0;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    box-sizing: border-box;
+}
+.right .email-input:focus,
+.right .message-input:focus {
+    outline-color: rgb(288, 81, 29);
+}
+.messageSubmit-btn {
+    display: block;
+    border: 0;
+    outline: none;
+    padding: 0.5rem 1rem;
+    line-height: 1.5rem;
+    width: 90%;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    background: linear-gradient(30deg, #f7a349, #df3a00 80%);
+    text-align: center;
+    cursor: pointer;
+}
+.messageSubmit-btn:hover {
+    background: linear-gradient(30deg, #f38816, #cc3600 80%);
+}

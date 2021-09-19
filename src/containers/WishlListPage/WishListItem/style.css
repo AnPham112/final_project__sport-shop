@@ -1,0 +1,36 @@
+.wishlistItemContainer {
+    padding: 0 20px;
+}
+.wishlist-items {
+    display: flex;
+}
+.wishlist-itemImgContainer {
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.wishlist-itemImgContainer img {
+    max-width: 100%;
+    min-width: 100%;
+    object-fit: contain;
+}
+.wishlist-itemDetail {
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deleteWishlistItem-btn {
+    border: none;
+    border-radius: 3px;
+    padding: 12px 10px 8px 10px;
+    background-color: rgb(194, 0, 0);
+    font-size: 1rem;
+    color: #fff;
+}
+.deleteWishlistItem-btn:hover {
+    background-color: rgb(158, 0, 0);
+}

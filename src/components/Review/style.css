@@ -1,0 +1,35 @@
+input[type="radio"] {
+    display: none;
+}
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+    margin-right: 10px;
+}
+.review-input {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+}
+.writeFeedback {
+    width: 60%;
+    margin: 0 auto;
+}
+.sendFeedback-btn {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ee832b;
+    border: 0;
+    border-radius: 0.2rem;
+}
+.sendFeedback-btn:hover {
+    background: #eb7c22;
+}
+.reviewer {
+    font-size: 0.9rem;
+    font-weight: 600;
+}

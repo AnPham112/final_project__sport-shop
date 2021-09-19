@@ -1,0 +1,15 @@
+.cartContainer {
+    display: flex;
+    max-width: 1200px;
+    margin: 15px auto;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.placeOrder-container {
+    width: 100%;
+    display: flex;
+    background: #ffffff;
+    justify-content: flex-end;
+    padding: 10px 0;
+    box-sizing: border-box;
+}

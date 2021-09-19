@@ -1,0 +1,16 @@
+.container-carousel {
+    margin: 0 0.625rem;
+}
+.product-page__img {
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.productPage-productContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}

@@ -1,0 +1,169 @@
+.cartContainer {
+    align-items: flex-start;
+}
+.checkoutContainer {
+    width: calc(100% - 300px);
+}
+.checkoutStep {
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+.checkoutHeader {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+.checkoutHeader.active {
+    background: #2874f0;
+}
+.checkoutHeader .stepNumber {
+    display: inline-block;
+    text-align: center;
+    background: #eee;
+    color: #2874f0;
+    border-radius: 3px;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 3px 7px;
+}
+.checkoutHeader.active .stepNumber {
+    background: #fff;
+}
+.stepTitle {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #878787;
+    margin-left: 15px;
+}
+.checkoutHeader.active .stepTitle {
+    color: #fff;
+}
+.loggedInId {
+    font-size: 12.5px;
+    margin: 0px 0 10px 57px;
+    padding: 0 0 0.5rem 0;
+}
+
+.addressContainer {
+    box-sizing: border-box;
+    padding: 20px;
+    background: #f5faff;
+    display: flex;
+}
+.addressinfo {
+    padding-left: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.addressDetail {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+    font-weight: 600;
+    font-family: "Roboto";
+    font-size: 12px;
+    color: #333;
+}
+.addressType {
+    display: inline-block;
+    margin: 0 0.3rem 0 1rem;
+    text-transform: uppercase;
+    background: #e0e0e0;
+    font-weight: 500;
+    padding: 2px 5px;
+    font-size: 10px;
+    border-radius: 2px;
+    color: #777777;
+}
+.fullAddress {
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 18px;
+}
+.stepCompleted {
+    padding: 0 0 20px 60px;
+    font-size: 12px;
+}
+.checkoutPage-content {
+    display: flex;
+    padding: 0.5rem 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.checkoutPage-fullName {
+    font-weight: 600;
+    display: inline-block;
+}
+.checkoutPage-userEmail-title {
+    display: block;
+}
+.checkoutPage-userEmail {
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+.checkoutLogin-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem 20px;
+}
+.checkoutLogin-btn {
+    background-color: #51c4d3;
+    border: 0;
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.thankYou-container {
+    border-radius: 50%;
+    background-color: #fff;
+    width: 400px;
+    height: 400px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    background-image: url("../../images/heart.jpg");
+    opacity: 0.7;
+    background-size: cover;
+}
+.thankYou-content {
+    font-size: 2.5rem;
+    font-weight: 600;
+    word-wrap: break-word;
+    text-align: center;
+}
+.orderConfirmationEmail-container {
+    padding: 20px;
+    font-size: 0.9rem;
+}
+.customerConfirmForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.customerConfirmInput {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-right: 1rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.customerConfirmSubmit {
+    border-radius: 3px;
+    border: 0;
+    outline: none;
+    color: #000;
+    background-color: #fb641b;
+    cursor: pointer;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+}
+.customerConfirmSubmit:hover {
+    background-color: #ff5500;
+}

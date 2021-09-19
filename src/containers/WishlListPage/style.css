@@ -1,0 +1,6 @@
+.wishListContainer {
+    max-width: 800px;
+    margin: 15px auto;
+    display: flex;
+    height: 80vh;
+}
