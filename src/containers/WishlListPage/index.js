@@ -30,13 +30,9 @@ const WishListPage = (props) => {
   }
 
   return (
-    <Layout>
+    <Layout MenuHeader>
       <div className="wishListContainer">
-        <Card
-          headerleft={`My wish list`}
-          style={{ width: '100%', overflow: 'hidden' }}
-        >
-
+        <Card headerleft={`My wish list`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff' }}>
           {Object.keys(wishListItems).map((key, index) => (
             <WishListItem
               key={index}

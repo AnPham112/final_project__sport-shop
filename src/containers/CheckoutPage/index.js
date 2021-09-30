@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, getAddress, getCartItems, login } from '../../actions';
 import Layout from '../../components/Layout';
-import { Anchor, Button, Input } from '../../components/ReusableUI';
-import PriceDetails from '../../components/PriceDetails';
+import { Anchor } from '../../components/ReusableUI';
 import Card from '../../components/UI/Card';
 import CartPage from '../CartPage';
 import AddressForm from './AddressForm.js';
 import emailjs from 'emailjs-com';
+import OnlinePayment from '../OnlinePayment';
+import ThankCustomer from '../../components/ThankCustomer';
 import './style.css';
+import { TextField } from '@material-ui/core';
+
 
 const CheckoutStep = (props) => {
   return (
@@ -42,7 +45,7 @@ const Address = ({
           onClick={() => selectAddress(adr)}
           type="radio" />
       </div>
-      <div className="flexRow sb addressinfo">
+      <div className="addressinfo">
         {!adr.edit ? (
           <div style={{ width: "100%" }}>
             <div className="addressDetail">
@@ -56,21 +59,19 @@ const Address = ({
                   name="EDIT"
                   onClick={() => enableAddressEditForm(adr)}
                   style={{
-                    fontWeight: "500",
+                    fontWeight: "600",
                     color: "#2874f0",
                   }}
                 />
               )}
             </div>
             <div className="fullAddress">
-              {adr.address} <br /> {`${adr.state} - ${adr.pinCode}`}
+              {adr.address} - {adr.pinCode}
             </div>
             {adr.selected && (
-              <Button
-                title="DELIVERY HERE"
-                onClick={() => confirmDeliveryAddress(adr)}
-                style={{ margin: "10px 0", padding: '1rem 1.5rem' }}
-              />
+              <button className="confirmDeliveryLocation-btn" onClick={() => confirmDeliveryAddress(adr)} >
+                Deliver here
+              </button>
             )}
           </div>
         ) : (
@@ -100,7 +101,14 @@ const CheckoutPage = (props) => {
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
+  const [onlinePayment, setOnlinePayment] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      dispatch(getCartItems());
+    }
+  }, [auth.authenticate]);
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
@@ -132,7 +140,7 @@ const CheckoutPage = (props) => {
     setAddress(updatedAddress);
   }
 
-  const userOrderConfirmation = (e) => {
+  const userOrderConfirmation = () => {
     setOrderConfirmation(true);
     setOrderSummary(false);
     setPaymentOption(true);
@@ -150,11 +158,10 @@ const CheckoutPage = (props) => {
   }
 
   const onConfirmOrder = () => {
-    const totalAmount = Object.keys(cart.cartItems).reduce(
-      (totalPrice, key) => {
-        const { price, qty } = cart.cartItems[key];
-        return totalPrice + price * qty;
-      }, 0);
+    const totalAmount = Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+      const { price, qty } = cart.cartItems[key];
+      return totalPrice + price * qty;
+    }, 0);
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
       payablePrice: cart.cartItems[key].price,
@@ -170,6 +177,27 @@ const CheckoutPage = (props) => {
     dispatch(addOrder(payload));
     setConfirmOrder(true);
   };
+
+  const onConfirmPayment = () => {
+    setOnlinePayment(true);
+    const totalAmount = Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+      const { price, qty } = cart.cartItems[key];
+      return totalPrice + price * qty;
+    }, 0);
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+    }));
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: "completed",
+      paymentType: "card",
+    };
+    dispatch(addOrder(payload));
+  }
 
   useEffect(() => {
     auth.authenticate && dispatch(getAddress());
@@ -198,16 +226,25 @@ const CheckoutPage = (props) => {
 
   if (confirmOrder) {
     return (
+      <ThankCustomer />
+    );
+  }
+
+  if (onlinePayment) {
+    return (
       <Layout>
-        <div className="thankYou-container">
-          <div className="thankYou-content">Thank you for your order</div>
-        </div>
+        <OnlinePayment
+          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+            const { price, qty } = cart.cartItems[key];
+            return totalPrice + price * qty;
+          }, 0)}
+        />
       </Layout>
     );
   }
 
   return (
-    <Layout>
+    <Layout MenuHeader Footer>
       <div className="cartContainer">
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
@@ -224,20 +261,24 @@ const CheckoutPage = (props) => {
               ) :
                 (
                   <>
-                    <div className="checkoutPage-content">
-                      <Input
-                        label="Email"
-                        style={{ width: '49%' }}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      <Input
-                        type="password"
-                        label="Password"
-                        style={{ width: '49%' }}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
+                    <div style={{ display: 'flex' }}>
+                      <div className="textField-container">
+                        <TextField
+                          className="input-textField"
+                          label="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="textField-container">
+                        <TextField
+                          className="input-textField"
+                          type="password"
+                          label="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </div>
                     </div>
                     <div className="checkoutLogin-btn-container">
                       <input
@@ -317,17 +358,19 @@ const CheckoutPage = (props) => {
                     className="customerConfirmInput"
                   />
                   <input
-                    className="customerEmailSubmit-btn"
                     type="submit"
                     value="Send"
-                    className="customerConfirmSubmit"
+                    className="customerConfirmSubmit-btn"
                   />
                 </form>
-                <Button
-                  title="Continue"
-                  onClick={userOrderConfirmation}
-                  style={{ padding: "10px 16px", justifyContent: 'flex-end', marginTop: '0.5rem' }}
-                />
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <button
+                    className="confirmOrderSummary-btn"
+                    onClick={userOrderConfirmation}
+                  >
+                    Continue
+                  </button>
+                </div>
               </div>
             </Card>
           )}
@@ -337,23 +380,9 @@ const CheckoutPage = (props) => {
             active={paymentOption}
             body={
               paymentOption && (
-                <div style={{ display: 'flex' }}>
-                  <Button
-                    title="Cash on delivery"
-                    onClick={onConfirmOrder}
-                    style={{
-                      padding: "10px 16px",
-                      margin: "10px 0px 20px 20px",
-                    }}
-                  />
-                  <Button
-                    title="Cash in Advance"
-                    onClick={onConfirmOrder}
-                    style={{
-                      padding: "10px 16px",
-                      margin: "10px 0px 20px 20px",
-                    }}
-                  />
+                <div className="paymentOption-container">
+                  <button className="cod-btn" onClick={onConfirmOrder}>Cash on delivery</button>
+                  <button className="cia-btn" onClick={onConfirmPayment}>Cash in advance</button>
                 </div>
               )
             }

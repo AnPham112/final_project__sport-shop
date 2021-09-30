@@ -1,50 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAddress } from '../../../actions';
-import { Button, Input } from '../../../components/ReusableUI';
+import TextField from '@material-ui/core/TextField';
 import './style.css';
 
 const AddressForm = (props) => {
   const { initialData } = props;
-  const [name, setName] = useState(initialData ? initialData.name : '');
-  const [mobileNumber, setMobileNumber] = useState(
-    initialData ? initialData.mobileNumber : ''
-  );
-  const [pinCode, setPinCode] = useState(
-    initialData ? initialData.pinCode : ''
-  );
-  const [locality, setLocality] = useState(
-    initialData ? initialData.locality : ''
-  );
-  const [address, setAddress] = useState(
-    initialData ? initialData.address : ''
-  );
-  const [cityDistrictTown, setCityDistrictTown] = useState(
-    initialData ? initialData.cityDistrictTown : ''
-  );
-  const [state, setState] = useState(
-    initialData ? initialData.state : ''
-  );
-  const [landmark, setLandmark] = useState(
-    initialData ? initialData.landmark : ''
-  );
-  const [alternatePhone, setAlternatePhone] = useState(
-    initialData ? initialData.alternatePhone : ''
-  );
-  const [addressType, setAddressType] = useState(
-    initialData ? initialData.addressType : ''
-  );
   const user = useSelector((state) => state.user);
+  const [name, setName] = useState(initialData ? initialData.name : '');
+  const [mobileNumber, setMobileNumber] = useState(initialData ? initialData.mobileNumber : '');
+  const [pinCode, setPinCode] = useState(initialData ? initialData.pinCode : '');
+  const [locality, setLocality] = useState(initialData ? initialData.locality : '');
+  const [address, setAddress] = useState(initialData ? initialData.address : '');
+  const [cityDistrictTown, setCityDistrictTown] = useState(initialData ? initialData.cityDistrictTown : '');
+  const [addressType, setAddressType] = useState(initialData ? initialData.addressType : '');
   const [submitFlag, setSubmitFlag] = useState(false);
-  const [id, setId] = useState(
-    initialData ? initialData._id : ''
-  );
+  const [id, setId] = useState(initialData ? initialData._id : '');
   const dispatch = useDispatch();
-
-  const inputContainer = {
-    width: '100%',
-    marginRight: 10
-  }
 
   const onAddressSubmit = (e) => {
     const payload = {
@@ -55,9 +27,6 @@ const AddressForm = (props) => {
         locality,
         address,
         cityDistrictTown,
-        state,
-        landmark,
-        alternatePhone,
         addressType
       }
     };
@@ -69,9 +38,7 @@ const AddressForm = (props) => {
   }
 
   useEffect(() => {
-    console.log('addressCount', user.address);
     if (submitFlag) {
-      console.log("where are we", user);
       let _address = {};
       if (id) {
         _address = {
@@ -82,9 +49,6 @@ const AddressForm = (props) => {
           locality,
           address,
           cityDistrictTown,
-          state,
-          landmark,
-          alternatePhone,
           addressType
         };
       } else {
@@ -96,134 +60,122 @@ const AddressForm = (props) => {
 
   const renderAddressForm = () => {
     return (
-      <>
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <Input
+      <form autoComplete="off">
+        <div style={{ display: 'flex' }}>
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
               label="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
-          <div style={inputContainer}>
-            <Input
-              label="10-digit mobile number"
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
+              label="Mobile phone number"
               value={mobileNumber}
               onChange={(e) => setMobileNumber(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
         </div>
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <Input
+        <div style={{ display: 'flex' }}>
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
               label="Pincode"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
-          <div style={inputContainer}>
-            <Input
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
               label="Locality"
               value={locality}
               onChange={(e) => setLocality(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
         </div>
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <Input
-              label="Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <Input
+        <div style={{ display: 'flex' }}>
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
               label="City/District/Town"
               value={cityDistrictTown}
               onChange={(e) => setCityDistrictTown(e.target.value)}
-            />
-          </div>
-          <div style={inputContainer}>
-            <Input
-              label="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
         </div>
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <Input
-              label="Landmark (Optional)"
-              value={landmark}
-              onChange={(e) => setLandmark(e.target.value)}
-            />
-          </div>
-          <div style={inputContainer}>
-            <Input
-              label="Alternate Phone (Optional)"
-              value={alternatePhone}
-              onChange={(e) => setAlternatePhone(e.target.value)}
+        <div style={{ display: 'flex' }}>
+          <div className="textField-container">
+            <TextField
+              className="input-textField"
+              label="Address details"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
         </div>
         <div className="addressType-content">
-          <label>Address Type</label>
-          <div className="flexRow">
-            <div className="addressType-inputs">
-              <input
-                type="radio"
-                onClick={() => setAddressType("home")}
-                name="addressType"
-                value="home"
-              />
-              <span>Home</span>
+          <label className="addressType-label">Address type</label>
+          <div style={{ display: 'flex', marginTop: '0.8rem', width: '50%' }}>
+            <div className="textField-container">
+              <button style={{ width: '100%' }} className="addressType-btn" onClick={(e) => {
+                e.preventDefault();
+                setAddressType("home");
+              }}>
+                Home
+              </button>
             </div>
-            <div className="addressType-inputs">
-              <input
-                type="radio"
-                onClick={() => setAddressType("work")}
-                name="addressType"
-                value="work"
-              />
-              <span>Workplace</span>
+            <div className="textField-container">
+              <button style={{ width: '100%' }} className="addressType-btn" onClick={(e) => {
+                e.preventDefault();
+                setAddressType("work")
+              }}>
+                Workplace
+              </button>
             </div>
           </div>
+          <button className="saveCustomerInfo-btn" onClick={onAddressSubmit} style={{ margin: "20px 0" }}>
+            Save and deliver here
+          </button>
         </div>
-        <Button
-          title="SAVE AND DELIVER HERE"
-          onClick={onAddressSubmit}
-          style={{ margin: "20px 0" }}
-        />
-      </>
+      </form>
     );
   }
 
   if (props.withoutLayout) {
-    return <div>{renderAddressForm()}</div>;
+    return <div style={{ width: '100%' }}>{renderAddressForm()}</div>;
   }
 
   return (
     <div className="checkoutStep" style={{ background: "#f5faff" }}>
-      <div className={`checkoutHeader`}>
+      <div className="checkoutHeader">
         <div>
           <span className="stepNumber">+</span>
           <span className="stepTitle">{"ADD NEW ADDRESS"}</span>
         </div>
       </div>
-      <div
-        style={{
-          padding: "0 60px",
-          paddingBottom: "20px",
-          boxSizing: "border-box",
-        }}
-      >
-        {renderAddressForm()}
-      </div>
+      <div className="addressForm-container">{renderAddressForm()}</div>
     </div>
   );
 }

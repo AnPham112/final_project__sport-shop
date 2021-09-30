@@ -3,12 +3,8 @@ import { BsTrash } from "react-icons/bs";
 import { generatePublicUrl } from '../../../urlConfig';
 import './style.css';
 
-
 const WishListItem = (props) => {
-
   const { _id, name, price, img } = props.wishListItem;
-
-  console.log('id nè:', _id);
 
   return (
     <div className="wishlistItemContainer">

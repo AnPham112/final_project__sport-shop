@@ -6,4 +6,45 @@
 }
 .addressType-inputs {
     margin: 8px 5px 0 0;
+    display: flex;
+    align-items: center;
+}
+.addressType-radio {
+    margin: 0 3px 0 10px;
+}
+.textField-container {
+    width: 100%;
+    margin: 10px;
+}
+.input-textField {
+    width: 100%;
+    font-size: 0.8rem;
+}
+.addressType-label {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+.addressType-btn {
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+.addressType-btn:focus {
+    color: #ee4d2d;
+    border: 1px solid #ee4d2d;
+}
+.saveCustomerInfo-btn {
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    border: 0;
+    background: #fd6a20;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.addressForm-container {
+    padding: 0 60px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
 }

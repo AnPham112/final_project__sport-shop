@@ -1,58 +1,26 @@
 import axios from "../helpers/axios";
 import { authConstants, cartConstants } from "./constants";
 
-// export const signup = (user) => {
-//   return async (dispatch) => {
-//     try {
-//       dispatch({ type: authConstants.SIGNUP_REQUEST });
-//       const res = await axios.post(`/signup`, user);
-//       if (res.status === 201) {
-//         dispatch({ type: authConstants.SIGNUP_SUCCESS });
-//         const { token, user } = res.data;
-//         localStorage.setItem("token", token);
-//         localStorage.setItem("user", JSON.stringify(user));
-//         dispatch({
-//           type: authConstants.LOGIN_SUCCESS,
-//           payload: { token, user }
-//         });
-//       } else {
-//         dispatch({
-//           type: authConstants.SIGNUP_FAILURE,
-//           payload: { error: res.data.error }
-//         });
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
 export const signup = (user) => {
   return async (dispatch) => {
-    try {
-      dispatch({ type: authConstants.SIGNUP_REQUEST });
-      const res = await axios.post(`/signup`, {
-        ...user
+    dispatch({ type: authConstants.SIGNUP_REQUEST });
+    const res = await axios.post(`/signup`, { ...user });
+    if (res.status === 201) {
+      dispatch({ type: authConstants.SIGNUP_SUCCESS });
+      const { token, user } = res.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch({
+        type: authConstants.LOGIN_SUCCESS,
+        payload: { token, user }
       });
-      if (res.status === 201) {
-        dispatch({ type: authConstants.SIGNUP_SUCCESS });
-        const { token, user } = res.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      if (res.status === 400) {
         dispatch({
-          type: authConstants.LOGIN_SUCCESS,
-          payload: { token, user }
+          type: authConstants.SIGNUP_FAILURE,
+          payload: { error: res.data.error }
         });
-      } else {
-        if (res.status === 400) {
-          dispatch({
-            type: authConstants.SIGNUP_FAILURE,
-            payload: { error: res.data.error }
-          });
-        }
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 }
@@ -60,16 +28,14 @@ export const signup = (user) => {
 export const login = (user) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGIN_REQUEST });
-    const res = await axios.post(`/signin`, {
-      ...user
-    });
+    const res = await axios.post(`/signin`, { ...user });
     if (res.status === 200) {
-      const { token, user } = res.data;
+      let { token, user } = res.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       dispatch({
         type: authConstants.LOGIN_SUCCESS,
-        payload: { token, user }
+        payload: { user, token }
       });
     } else {
       if (res.status === 400) {

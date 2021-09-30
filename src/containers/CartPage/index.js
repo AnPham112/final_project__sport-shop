@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import Layout from '../../components/Layout';
-import Card from '../../components/UI/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { addToCart, getCartItems, removeCartItem } from '../../actions';
-import { Button } from '../../components/ReusableUI';
 import PriceDetails from '../../components/PriceDetails';
 import { generatePublicUrl } from '../../urlConfig';
-// import InStock from '../../components/UI/InStock';
+import TotalPriceEachItem from '../../components/TotalPriceEachItem';
+import CartActions from '../../components/CartActions';
 
 const CartPage = (props) => {
   const auth = useSelector(state => state.auth);
@@ -32,6 +31,7 @@ const CartPage = (props) => {
   }
 
   const onQuantityDecrement = (_id, qty) => {
+    if (qty < 1) return;
     const { name, price, img } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img }, -1));
   }
@@ -39,126 +39,117 @@ const CartPage = (props) => {
   const onRemoveCartItem = (_id) => {
     dispatch(removeCartItem({ productId: _id }));
   }
-  console.log('cc ne', Object.keys(cartItems));
 
   if (props.onlyCartItems) {
     return (
       <>
-        {Object.keys(cartItems).map((key, index) => (
-          <div className="cartContainer">
-            <div className="itemTitle-container">
-              <div>
-                <span className="itemTitle">Product</span><br />
-                <div className="productInformation">
-                  <div className="cartProImgContainer">
-                    <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
-                  </div>
-                  <span className="productInformation-name">{cartItems[key].name}</span>
-                </div>
-              </div>
-              <div className="itemInfo-container">
-                <span className="itemTitle">Unit price</span>
-                <span className="itemValue">${cartItems[key].price}</span>
-              </div>
-              <CartItem
-                key={index}
-                cartItem={cartItems[key]}
-                onQuantityInc={onQuantityIncrement}
-                onQuantityDec={onQuantityDecrement}
-                onRemoveCartItem={onRemoveCartItem}
-              />
-            </div>
-            <div div className="placeOrder-container" >
-              <div style={{ padding: '10px 20px' }}>
-                <Button
-                  title="PLACE ORDER"
-                  onClick={() => props.history.push(`/checkout`)}
-                />
-              </div>
-            </div>
-          </div>
-        ))
-        }
+        <div className="cartContainer">
+          <table className="content-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Unit price</th>
+                <th>Quantity</th>
+                <th>Total price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            {Object.keys(cartItems).map((key, index) => (
+              <tbody>
+                <tr>
+                  <td>
+                    <div className="productInformation">
+                      <div className="cartProImgContainer">
+                        <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
+                      </div>
+                      <span className="productInformation-name">{cartItems[key].name}</span>
+                    </div>
+                  </td>
+                  <td>${cartItems[key].price}</td>
+                  <td>
+                    <CartItem
+                      key={index}
+                      cartItem={cartItems[key]}
+                      onQuantityInc={onQuantityIncrement}
+                      onQuantityDec={onQuantityDecrement}
+                    />
+                  </td>
+                  <td>
+                    <TotalPriceEachItem
+                      key={index}
+                      cartItem={cartItems[key]}
+                    />
+                  </td>
+                  <td>
+                    <CartActions
+                      key={index}
+                      cartItem={cartItems[key]}
+                      onRemoveCartItem={onRemoveCartItem}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+          </table>
+        </div>
       </>
     );
   }
 
   return (
-    <Layout>
-      {Object.keys(cartItems).map((key, index) => (
-        <div className="cartContainer">
-          <div className="itemTitle-container">
-            <div>
-              <span className="itemTitle">Product</span><br />
-              <div className="productInformation">
-                <div className="cartProImgContainer">
-                  <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
-                </div>
-                <span className="productInformation-name">{cartItems[key].name}</span>
-              </div>
-            </div>
-            <div className="itemInfo-container">
-              <span className="itemTitle">Unit price</span>
-              <span className="itemValue">${cartItems[key].price}</span>
-            </div>
-            {/* <div> */}
-            {/* <span className="itemTitle">Quantity</span> <br /> */}
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
-            />
-            {/* </div> */}
-            {/* <div>
-              <span className="itemTitle">Total price</span><br />
-
-
-
-            </div> */}
-          </div>
-
-
-          {/* ${Object.keys(cartItems).reduce((totalPrice, key) => {
-                const { price, qty } = cartItems[key];
-                return totalPrice + price * qty;
-              }, 0)}
-              <PriceDetails
-                price={cartItems[key].price}
-                qty={cartItems[key].qty}
-              /> */}
-
-
-
-
-
-
-
-
-
-          <div div className="placeOrder-container" >
-            <div style={{ padding: '10px 20px' }}>
-              <Button
-                title="PLACE ORDER"
-                onClick={() => props.history.push(`/checkout`)}
-              />
-            </div>
-          </div>
-
-
-          {/* <Card headerleft={`My Cart`} headerright={<p>Delivery to</p>} style={{ width: '100%', overflow: 'hidden' }}>
+    <Layout MenuHeader Footer>
+      <div className="cartContainer">
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Unit price</th>
+              <th>Quantity</th>
+              <th>Total price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          {/* {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">No items are added</div>} */}
           {Object.keys(cartItems).map((key, index) => (
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
-            />
+            <tbody>
+              <tr>
+                <td>
+                  <div className="productInformation">
+                    <div className="cartProImgContainer">
+                      <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
+                    </div>
+                    <span className="productInformation-name">{cartItems[key].name}</span>
+                  </div>
+                </td>
+                <td>${cartItems[key].price}</td>
+                <td>
+                  <CartItem
+                    key={index}
+                    cartItem={cartItems[key]}
+                    onQuantityInc={onQuantityIncrement}
+                    onQuantityDec={onQuantityDecrement}
+                  />
+                </td>
+                <td>
+                  <TotalPriceEachItem
+                    key={index}
+                    cartItem={cartItems[key]}
+                  />
+                </td>
+                <td>
+                  <CartActions
+                    key={index}
+                    cartItem={cartItems[key]}
+                    onRemoveCartItem={onRemoveCartItem}
+                  />
+                </td>
+              </tr>
+            </tbody>
           ))}
+        </table>
+        <div className="placeOrder-container">
           <PriceDetails
-            totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+            totalItem={Object.keys(cart.cartItems).reduce((qty, key) => {
               return qty + cart.cartItems[key].qty;
             }, 0)}
             totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
@@ -166,11 +157,12 @@ const CartPage = (props) => {
               return totalPrice + price * qty;
             }, 0)}
           />
-
-        </Card> */}
+          <button
+            className="placeOrder-btn"
+            onClick={() => props.history.push(`/checkout`)}
+          >Place order</button>
         </div>
-
-      ))}
+      </div>
     </Layout >
   );
 }

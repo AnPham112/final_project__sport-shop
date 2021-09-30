@@ -9,7 +9,6 @@ const getCartItems = () => {
       const res = await axios.post(`/user/getCartItems`);
       if (res.status === 200) {
         const { cartItems } = res.data;
-        console.log({ getCartItems: cartItems });
         if (cartItems) {
           dispatch({
             type: cartConstants.ADD_TO_CART_SUCCESS,
@@ -46,7 +45,6 @@ export const addToCart = (product, newQty = 1) => {
         }]
       }
       const res = await axios.post(`/user/cart/addtocart`, payload);
-      console.log(res);
       if (res.status === 201) {
         dispatch(getCartItems());
       }

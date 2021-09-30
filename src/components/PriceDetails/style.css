@@ -1,0 +1,8 @@
+.totalPrice-container {
+    display: flex;
+    margin-right: 1rem;
+}
+.totalPriceOfItems {
+    margin-left: 0.5rem;
+    font-weight: 600;
+}

@@ -1,17 +1,21 @@
 import React from 'react';
+import './style.css';
 
 const Pagination = ({ totalPages, changePage }) => {
   const pages = [...Array(totalPages).keys()].map(num => num + 1);
-  console.log('pages', pages);
+
   return (
-    <div>{pages.map((num) => (
-      <button
-        key={num}
-        onClick={() => changePage(num)}
-      >
-        {num}
-      </button>
-    ))}</div>
+    <div style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+      {pages.map((num, index) => (
+        <button
+          key={index}
+          className="numberPagination"
+          onClick={() => changePage(num)}
+        >
+          {num}
+        </button>
+      ))}
+    </div>
   );
 }
 

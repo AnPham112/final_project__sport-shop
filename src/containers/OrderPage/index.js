@@ -20,10 +20,8 @@ const OrderPage = (props) => {
     }
   }, [auth.authenticate]);
 
-  console.log(user);
-
   return (
-    <Layout>
+    <Layout MenuHeader>
       <div className="orderPage-container">
         <Breed
           breed={[
@@ -33,11 +31,12 @@ const OrderPage = (props) => {
           breedIcon={<IoIosArrowForward />}
         />
         <div className="orderItems-container">
-          {user?.orders?.map((order) => {
+          {user.orders?.map((order) => {
             return order.items?.map((item, index) => (
               <Card
                 key={index}
                 style={{ margin: '5px auto', width: '1100px' }}
+                headerleft={`My orders`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff' }}
               >
                 <div className="orderItem-container">
                   <div className="orderImg-container">

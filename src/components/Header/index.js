@@ -16,33 +16,19 @@ import WishList from '../UI/WishList';
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
   const wishList = useSelector((state) => state.wishList);
   const dispatch = useDispatch();
 
-  const userLogin = () => {
-    const user = { email, password }
-    dispatch(login(user));
+  const userLogin = (loginData) => {
+    dispatch(login(loginData));
   }
 
-  const userSignup = () => {
-    const user = { firstName, lastName, email, password };
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      password === ""
-    ) {
-      return;
-    }
-    dispatch(signup(user));
+  const userSignup = (signUpData) => {
+    dispatch(signup(signUpData));
     setSignupModal(false);
-  };
+  }
 
   const logout = () => {
     dispatch(signout());
@@ -115,33 +101,17 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <div className="grid">
+      <div className="commonContainer">
         <div className="header-navbar">
           <ModalLogin
             visible={loginModal}
             onClose={() => setLoginModal(false)}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            title={"Login"}
-            textColor={"#ffffff"}
-            onClick={userLogin}
+            userLogin={userLogin}
           />
           <ModalSignUp
             visible={signupModal}
             onClose={() => setSignupModal(false)}
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            title={"Sign up"}
-            textColor={"#ffffff"}
-            onClick={userSignup}
+            userSignup={userSignup}
           />
 
           {/*Logo*/}

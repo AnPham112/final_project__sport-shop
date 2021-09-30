@@ -16,8 +16,6 @@ const initState = {
 };
 
 export default (state = initState, action) => {
-  console.log(action);
-
   switch (action.type) {
     case authConstants.LOGIN_REQUEST:
       state = {
@@ -28,8 +26,8 @@ export default (state = initState, action) => {
     case authConstants.LOGIN_SUCCESS:
       state = {
         ...state,
-        token: action.payload.token,
         user: action.payload.user,
+        token: action.payload.token,
         authenticate: true,
         authenticating: false,
       };
@@ -43,6 +41,7 @@ export default (state = initState, action) => {
     case authConstants.LOGOUT_SUCCESS:
       state = {
         ...initState,
+        loading: false
       };
       break;
     case authConstants.LOGOUT_FAILURE:
@@ -63,6 +62,5 @@ export default (state = initState, action) => {
       };
       break;
   }
-
   return state;
 };

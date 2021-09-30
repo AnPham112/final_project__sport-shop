@@ -1,0 +1,38 @@
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+    margin-right: 10px;
+}
+.reviewer {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.userReview-container {
+    background: #fff;
+    border: 1px solid rgb(99, 99, 99);
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.userReview-container:last-of-type {
+    border-bottom: 3px solid rgba(20, 45, 52, 0.9);
+}
+.numberPagination {
+    color: rgba(20, 45, 52, 0.9);
+    font-weight: 600;
+    border: 1px solid rgba(20, 45, 52, 0.9);
+}
+.reviewer {
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.reviewContent {
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.5rem;
+}
+.reviewTime {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,56 @@
+.homePage-card {
+  background: rgba(20, 45, 52, 0.9);
+  overflow: hidden;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px 15px;
+  width: 100%;
+}
+.homePage-card img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.homePage-productName {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  color: rgb(241, 241, 241);
+  margin-top: 0.5rem;
+  display: block;
+}
+.homePage-productDescription {
+  color: #eee;
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.3rem;
+}
+.homePage-card-btn {
+  margin: 0.5rem auto;
+  font-size: 1rem;
+  display: block;
+  width: 115px;
+  height: 25px;
+  background: #4e9caf;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  line-height: 25px;
+  text-decoration: none;
+}
+.homePage-averageRating {
+  background: #388e3c;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  padding: 5px 3px 3px 3px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}

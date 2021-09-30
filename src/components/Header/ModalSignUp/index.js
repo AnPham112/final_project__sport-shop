@@ -1,35 +1,51 @@
 import React from 'react'
-import { Modal, Button } from '../../ReusableUI';
+import { Modal } from '../../ReusableUI';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 const ModalSignUp = (props) => {
   const {
-    visible,
-    onClose,
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    title,
-    textColor,
-    onClick
+    visible, onClose, userSignup
   } = props;
+
+  const validationSchema = yup.object().shape({
+    firstName: yup.string()
+      .max(20, 'First name is too long')
+      .required('Email is required'),
+    lastName: yup.string()
+      .max(20, 'Last name is too long')
+      .required('Email is required'),
+    email: yup.string()
+      .max(60, 'Email is too long')
+      .required('Email is required')
+      .email('Enter a valid email'),
+    password: yup.string()
+      .required('Password is required')
+      .max(60, 'Password is too long')
+  });
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onUserSignUp = (data) => {
+    userSignup(data);
+  }
 
   return (
     <Modal
       visible={visible}
       onClose={onClose}
     >
-      <h2 className="signup-title">Signup</h2>
+      <h2 className="signup-title">Sign up</h2>
       <div className="login-container">
         <div className="row">
           <div className="login-form-style">
             <form
               className='login-form'
-              onSubmit={{}}
+              onSubmit={handleSubmit(onUserSignUp)}
               autoComplete='off'
             >
               <div className='login-form-container'>
@@ -38,9 +54,12 @@ const ModalSignUp = (props) => {
                   className='login-form__input'
                   id='firstname'
                   type='text'
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  name="firstName"
+                  {...register("firstName")}
                 />
+                {errors.firstName && (
+                  <p className="err-message">{errors.firstName?.message}</p>
+                )}
               </div>
               <div className='login-form-container'>
                 <label htmlFor='lastname' className='login-form__label'>Last name</label>
@@ -48,9 +67,12 @@ const ModalSignUp = (props) => {
                   className='login-form__input'
                   id='lastname'
                   type='text'
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  name="lastName"
+                  {...register("lastName")}
                 />
+                {errors.lastName && (
+                  <p className="err-message">{errors.lastName?.message}</p>
+                )}
               </div>
               <div className='login-form-container'>
                 <label htmlFor='email' className='login-form__label'>Email</label>
@@ -58,9 +80,12 @@ const ModalSignUp = (props) => {
                   className='login-form__input'
                   id='email'
                   type='email'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="err-message">{errors.email?.message}</p>
+                )}
               </div>
               <div className='login-form-container'>
                 <label htmlFor='password' className='login-form__label'>Password</label>
@@ -68,16 +93,17 @@ const ModalSignUp = (props) => {
                   className='login-form__input'
                   id='password'
                   type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  {...register("password")}
                 />
+                {errors.password && (
+                  <p className="err-message">{errors.password?.message}</p>
+                )}
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button className="signup-btn">Sign up</button>
               </div>
             </form>
-            <Button
-              title={title}
-              textColor={textColor}
-              onClick={onClick}
-            />
           </div>
         </div>
       </div>

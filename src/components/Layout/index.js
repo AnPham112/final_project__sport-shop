@@ -8,9 +8,9 @@ const Layout = (props) => {
   return (
     <div className="sport-shop__layout">
       <Header />
-      <MenuHeader />
+      {props.MenuHeader ? <MenuHeader /> : <></>}
       {props.children}
-      <Footer />
+      {props.Footer ? <Footer /> : <></>}
     </div>
   )
 }

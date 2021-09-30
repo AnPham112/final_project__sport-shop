@@ -9,6 +9,7 @@
     background: #fff;
     box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
+    /* font-weight: 600; */
 }
 .checkoutHeader {
     width: 100%;
@@ -16,7 +17,8 @@
     padding: 10px 20px;
 }
 .checkoutHeader.active {
-    background: #f0b128;
+    background: rgba(20, 45, 52, 0.9);
+    letter-spacing: 1px;
 }
 .checkoutHeader .stepNumber {
     display: inline-block;
@@ -25,6 +27,7 @@
     color: #2874f0;
     border-radius: 3px;
     font-size: 12px;
+    font-weight: 600;
     box-sizing: border-box;
     padding: 3px 7px;
 }
@@ -37,9 +40,10 @@
     font-weight: 600;
     color: #878787;
     margin-left: 15px;
+    letter-spacing: 1px;
 }
 .checkoutHeader.active .stepTitle {
-    color: #000;
+    color: #fff;
     font-weight: 600;
 }
 .loggedInId {
@@ -50,17 +54,20 @@
 
 .addressContainer {
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px 20px;
     background: #f5faff;
     display: flex;
 }
 .addressinfo {
+    display: flex;
+    justify-content: space-between;
     padding-left: 15px;
     box-sizing: border-box;
     width: 100%;
 }
 .addressDetail {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
@@ -72,14 +79,14 @@
 }
 .addressType {
     display: inline-block;
-    margin: 0 0.3rem 0 1rem;
+    margin: 0 0.2rem 0 1rem;
     text-transform: uppercase;
     background: #e0e0e0;
     font-weight: 500;
-    padding: 2px 5px;
+    padding: 3px 6px;
     font-size: 10px;
     border-radius: 2px;
-    color: #777777;
+    color: #6f6f6f;
 }
 .fullAddress {
     font-size: 12px;
@@ -91,10 +98,10 @@
     font-size: 12px;
 }
 .checkoutPage-content {
-    display: flex;
+    width: 100%;
+    /* display: flex; */
     padding: 0.5rem 20px;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 .checkoutPage-fullName {
     font-weight: 600;
@@ -116,28 +123,13 @@
     background-color: #51c4d3;
     border: 0;
     outline: none;
-    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
     font-weight: 600;
     border-radius: 3px;
 }
-
-.thankYou-container {
-    border-radius: 50%;
-    background-color: #fff;
-    width: 400px;
-    height: 400px;
-    margin: 10px auto;
-    display: flex;
-    align-items: center;
-    background-image: url("../../images/heart.jpg");
-    opacity: 0.7;
-    background-size: cover;
-}
-.thankYou-content {
-    font-size: 2.5rem;
-    font-weight: 600;
-    word-wrap: break-word;
-    text-align: center;
+.checkoutLogin-btn:hover {
+    background-color: #45aab8;
 }
 .orderConfirmationEmail-container {
     padding: 20px;
@@ -153,18 +145,66 @@
     width: 100%;
     margin-right: 1rem;
     border-radius: 3px;
-    font-weight: 600;
 }
-.customerConfirmSubmit {
+.customerConfirmSubmit-btn {
     border-radius: 3px;
     border: 0;
     outline: none;
-    color: #000;
-    background-color: #fb641b;
+    color: #fff;
+    background-color: #51c4d3;
     cursor: pointer;
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
 }
-.customerConfirmSubmit:hover {
-    background-color: #ff5500;
+.customerConfirmSubmit-btn:hover {
+    background-color: #45aab8;
+}
+.confirmOrderSummary-btn {
+    padding: 1rem 1.5rem;
+    margin-top: 0.8rem;
+    border-radius: 3px;
+    border: 0;
+    background: #fd6a20;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.confirmOrderSummary-btn:hover {
+    background: #fc6013;
+}
+.cod-btn {
+    width: 50%;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    margin-right: 1rem;
+    border-radius: 3px;
+}
+.cia-btn {
+    width: 50%;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.cod-btn:hover,
+.cia-btn:hover {
+    border: 1px solid #ff5500;
+    color: #ff5500;
+}
+.confirmDeliveryLocation-btn {
+    margin-top: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    border: 0;
+    background: #fd6a20;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.paymentOption-container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }

@@ -41,7 +41,7 @@ const OrderDetailsPage = (props) => {
   }
 
   return (
-    <Layout>
+    <Layout MenuHeader>
       <div className="orderDetailsPage-container">
         <Card style={{ margin: "10px 0" }} >
           <div className="delAdrContainer">
@@ -66,7 +66,7 @@ const OrderDetailsPage = (props) => {
           <Card
             key={index}
             style={{ display: "flex", padding: "20px", margin: "10px 0" }}>
-            <div className="flexRow">
+            <div style={{ display: 'flex' }}>
               <div className="delItemImgContainer">
                 <img src={generatePublicUrl(item.productId?.productPictures[0]?.img)} alt="" />
               </div>

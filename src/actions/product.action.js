@@ -1,41 +1,14 @@
 import axios from "../helpers/axios";
-// import store from '../store';
 import { productConstants } from "./constants";
 
 export const getProductsBySlug = (slug) => {
   return async dispatch => {
     const res = await axios.get(`/products/${slug}`);
-    console.log(res);
     if (res.status === 200) {
       dispatch({
         type: productConstants.GET_PRODUCTS_BY_SLUG,
         payload: res.data
       });
-    }
-  }
-}
-
-export const getProductPage = (payload) => {
-  return async dispatch => {
-    dispatch({ type: productConstants.GET_PRODUCTS_PAGE_REQUEST });
-    try {
-      const { cid, type } = payload.params;
-      const res = await axios.get(`/page/${cid}/${type}`);
-      if (res.status === 200) {
-        const { page } = res.data;
-        dispatch({
-          type: productConstants.GET_PRODUCTS_PAGE_SUCCESS,
-          payload: { page }
-        });
-      } else {
-        const { error } = res.data;
-        dispatch({
-          type: productConstants.GET_PRODUCTS_PAGE_FAILURE,
-          payload: { error }
-        });
-      }
-    } catch (error) {
-      console.log(error);
     }
   }
 }
@@ -47,7 +20,6 @@ export const getProductDetailsById = (payload) => {
     try {
       const { productId } = payload.params;
       res = await axios.get(`/product/${productId}`);
-      console.log(res);
       dispatch({
         type: productConstants.GET_PRODUCT_DETAILS_BY_ID_SUCCESS,
         payload: { productDetails: res.data.product }
@@ -88,18 +60,55 @@ export const getReviews = () => {
 export const createReview = (payload) => {
   return async dispatch => {
     dispatch({ type: productConstants.CREATE_REVIEW_REQUEST });
-    let res;
     try {
-      res = await axios.post(`/comment/createReview`, payload);
-      console.log(res);
-      dispatch({
-        type: productConstants.CREATE_REVIEW_SUCCESS,
-        payload: { review: res.data.review }
-      });
-      dispatch(getReviews());
+      const res = await axios.post(`/comment/createReview`, payload);
+      if (res.status === 201) {
+        dispatch({ type: productConstants.CREATE_REVIEW_SUCCESS });
+        dispatch(getReviews());
+      }
     } catch (error) {
       console.log(error);
       dispatch({ type: productConstants.CREATE_REVIEW_FAILURE });
     }
   }
+}
+
+export const getProducts = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST });
+      const res = await axios.post(`product/getProducts`);
+      if (res.status === 200) {
+        const { products } = res.data;
+        dispatch({
+          type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
+          payload: { products },
+        });
+      } else {
+        dispatch({ type: productConstants.GET_ALL_PRODUCTS_FAILURE });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const getHomeProducts = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: productConstants.GET_HOME_PAGE_PRODUCT_REQUEST });
+      const res = await axios.get(`/getProducts`);
+      if (res.status === 200) {
+        const { products } = res.data;
+        dispatch({
+          type: productConstants.GET_HOME_PAGE_PRODUCT_SUCCESS,
+          payload: { products },
+        });
+      } else {
+        dispatch({ type: productConstants.GET_HOME_PAGE_PRODUCT_FAILURE });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }

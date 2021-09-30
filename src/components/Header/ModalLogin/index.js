@@ -1,19 +1,33 @@
 import React from 'react';
-import { Modal, Button } from '../../ReusableUI';
+import { Modal } from '../../ReusableUI';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 const ModalLogin = (props) => {
   const {
-    visible,
-    onClose,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    title,
-    textColor,
-    onClick
+    visible, onClose, userLogin
   } = props;
 
+  const validationSchema = yup.object().shape({
+    email: yup.string()
+      .max(60, 'Email is too long')
+      .required('Email is required')
+      .email('Enter a valid email'),
+    password: yup.string()
+      .required('Password is required')
+      .max(60, 'Password is too long')
+  });
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
+
+
+  const onUserLogin = (data) => {
+    userLogin(data);
+  }
 
   return (
     <Modal
@@ -26,7 +40,7 @@ const ModalLogin = (props) => {
           <div className="login-form-style">
             <form
               className='login-form'
-              onSubmit={{}}
+              onSubmit={handleSubmit(onUserLogin)}
               autoComplete='off'
             >
               <div className='login-form-container'>
@@ -35,9 +49,12 @@ const ModalLogin = (props) => {
                   className='login-form__input'
                   id='email'
                   type='email'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name='email'
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="err-message">{errors.email?.message}</p>
+                )}
               </div>
               <div className='login-form-container'>
                 <label htmlFor='password' className='login-form__label'>Password</label>
@@ -45,16 +62,19 @@ const ModalLogin = (props) => {
                   className='login-form__input'
                   id='password'
                   type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name='password'
+                  {...register("password")}
                 />
               </div>
+              {errors.password && (
+                <p className="err-message">{errors.password?.message}</p>
+              )}
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button className="login-btn">Login</button>
+              </div>
+
             </form>
-            <Button
-              title={title}
-              textColor={textColor}
-              onClick={onClick}
-            />
+
           </div>
         </div>
       </div>

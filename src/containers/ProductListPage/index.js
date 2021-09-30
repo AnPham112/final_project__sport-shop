@@ -1,10 +1,8 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import ProductStore from './ProductStore';
-import ProductPage from './ProductPage';
 import getParams from '../../utils/getParams';
-import './style.scss';
-// import ClothingAndEquipments from './ClothingAndEquipments';
+import './style.css';
 
 const ProductListPage = (props) => {
   const renderProduct = () => {
@@ -13,9 +11,6 @@ const ProductListPage = (props) => {
     switch (params.type) {
       case 'store':
         content = <ProductStore {...props} />;
-        break;
-      case 'page':
-        content = <ProductPage {...props} />
         break;
     }
     return content;

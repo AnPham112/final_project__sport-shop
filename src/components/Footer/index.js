@@ -29,7 +29,7 @@ const Footer = (props) => {
 
   return (
     <div className="footer">
-      <div className="grid">
+      <div className="commonContainer">
         <div className="main-content">
           <div className="left box">
             <h2>About us</h2>

@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetailsById, addToCart, getCartItems } from '../../actions';
+import { getProductDetailsById, addToCart, getReviews, createReview } from '../../actions';
 import Layout from '../../components/Layout';
 import { generatePublicUrl } from '../../urlConfig';
 import { IoIosArrowForward, IoMdCart } from 'react-icons/io';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import './style.css';
+import { FaStar } from 'react-icons/fa';
+import { productConstants } from '../../actions/constants';
 import InStock from '../../components/UI/InStock';
-import Review from '../../components/Review';
+import AverageStarRating from '../../components/AverageStarRating';
+import UserReviews from '../../components/Review/components/UserReviews';
+import Pagination from '../../components/Review/components/Pagination';
+import './style.css';
 
 const ProductDetailsPage = (props) => {
   const product = useSelector((state) => state.product);
+  const auth = useSelector((state) => state.auth);
   const [activeThumb, setActiveThumb] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const [comment, setComment] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const { productId } = props.match.params;
     const payload = {
@@ -22,20 +32,42 @@ const ProductDetailsPage = (props) => {
     dispatch(getProductDetailsById(payload));
   }, []);
 
+  useEffect(() => {
+    dispatch(getReviews());
+    setReviews(product.reviews);
+  }, [reviews]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(product.reviews.length / productConstants.REVIEW_PER_PAGE));
+  }, [product.reviews]);
+
+  const stars = Array(5).fill(0);
+  const colors = {
+    orange: "#FFBA5A",
+    grey: "#a9a9a9"
+  }
+
+  const [rating, setRating] = useState(0);
+  const [hoverValue, setHoverValue] = useState(null);
+
+  const onHandleChangePage = (pageNumber) => {
+    setPage(pageNumber);
+  }
+
   if (Object.keys(product.productDetails).length === 0) {
     return null;
   }
 
   return (
-    <Layout>
-      <div className="grid">
+    <Layout MenuHeader>
+      <div className="commonContainer">
         <div className="productDescriptionContainer">
-          <div className="flexRow">
+          <div style={{ display: 'flex' }}>
             <div className="verticalImageStack">
               {product.productDetails.productPictures.map((thumb, index) => (
                 <div
                   key={index}
-                  onClick={() => { setActiveThumb(index) }}
+                  onClick={() => setActiveThumb(index)}
                   className={`thumbnail ${index == activeThumb ? 'active' : ''}`}>
                   <img
                     className={`thumbnailImg`}
@@ -60,13 +92,11 @@ const ProductDetailsPage = (props) => {
                     const { _id, name, price } = product.productDetails;
                     const img = product.productDetails.productPictures[0].img;
                     dispatch(addToCart({ _id, name, price, img }));
-                    // props.history.push(`/cart`);
                   }}
                 >
                   <IoMdCart />
                   <span className="addToCart-btn__title">Add To Cart</span>
                 </button>
-
                 <button className="buyNow-btn"
                   onClick={() => {
                     const { _id, name, price } = product.productDetails;
@@ -81,25 +111,30 @@ const ProductDetailsPage = (props) => {
             </div>
           </div>
           {/*Breed*/}
-          <div>
+          <div style={{ width: '100%' }}>
             <div className="breed">
               <ul>
                 <li><Link to="/">Home</Link><IoIosArrowForward /></li>
-                <li><a href="#">{product.productDetails?.name}</a></li>
+                <li><Link to='#'>{product.productDetails?.name}</Link></li>
               </ul>
             </div>
             {/* product description */}
             <div className="productDetails">
               <div className="productDetails-title">
-                <p className="productTitle">{product.productDetails?.name}</p>
-                {/* <InStock InStock={product.productDetails?.quantity} /> */}
-                <p className="productInStock">In stock: {product.productDetails?.quantity}</p>
+                <span className="productTitle">{product.productDetails?.name}</span>
+                <InStock
+                  inStock={product.productDetails?.quantity}
+                  product={props.match.params}
+                />
+                {/* <span className="productInStock">In stock: {product.productDetails?.quantity}</span> */}
               </div>
-              <div className="priceContainer">
-                <span className="price">
-                  ${product.productDetails.price}
-                </span>
-              </div>
+              <AverageStarRating
+                reviews={product.reviews}
+                product={props.match.params}
+              />
+              <span className="price">
+                ${product.productDetails.price}
+              </span>
               <div>
                 <p className="product-guarantee">
                   100% Authentic product
@@ -113,12 +148,74 @@ const ProductDetailsPage = (props) => {
                   </span>
                 </p>
               </div>
+              <div className="writeFeedback">
+                <div style={{ textAlign: 'center', marginBottom: '0.3rem' }}>
+                  {stars.map((star, index) => {
+                    const ratingValue = index + 1;
+                    return (
+                      <label key={index}>
+                        <input type="radio" style={{ display: 'none' }} name="rating" value={ratingValue} onClick={() => setRating(ratingValue)} />
+                        <FaStar
+                          className="star"
+                          size={24}
+                          style={{
+                            marginRight: 10,
+                            cursor: 'pointer'
+                          }}
+                          color={(hoverValue || rating) >= ratingValue ? colors.orange : colors.grey}
+                          onMouseEnter={() => setHoverValue(ratingValue)}
+                          onMouseLeave={() => setHoverValue(null)}
+                        />
+                      </label>
+                    )
+                  })}
+                </div>
+                <form style={{ display: 'flex', flexDirection: 'column' }}>
+                  <textarea
+                    className="review-input"
+                    onChange={(e) => setComment(e.target.value)}
+                    value={comment}
+                    placeholder="Write your feedback"
+                    type="text"
+                    rows="3"
+                    cols="25"
+                  />
+                  <button
+                    className="sendFeedback-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const payload = {
+                        rating: rating,
+                        content: comment,
+                        writer: auth.user._id,
+                        productId: props.match.params.productId
+                      }
+                      dispatch(createReview(payload))
+                        .then(() =>
+                          setRating(0),
+                          setComment('')
+                        );
+                    }}>
+                    Send feedback
+                  </button>
+                </form>
+              </div>
+              <h3>Ratings & Reviews</h3>
+              <UserReviews
+                reviews={product.reviews}
+                stars={stars}
+                product={props.match.params}
+                colors={colors}
+                page={page}
+              />
+              <Pagination
+                totalPages={totalPages}
+                changePage={onHandleChangePage} />
             </div>
           </div>
         </div>
-        <Review prod={props.match.params} />
       </div>
-    </Layout>
+    </Layout >
   );
 }
 

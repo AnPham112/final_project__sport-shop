@@ -1,4 +1,5 @@
 .productInStock {
-    font-size: 13px;
+    font-size: 0.9rem;
+    font-weight: 600;
     color: #d0011b;
 }

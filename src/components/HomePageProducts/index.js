@@ -1,70 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory } from '../../actions';
-import { Link } from 'react-router-dom';
-import './style.css';
+import { getHomeProducts, getReviews } from '../../actions';
+import Carousel from 'react-elastic-carousel';
+import ProductCard from './ProductCard';
+import './style.scss';
+
 
 const HomePageProducts = (props) => {
-  const category = useSelector(state => state.category);
+  const productHomePage = useSelector((state) => state.productHomePage);
+  const product = useSelector((state) => state.product);
+  const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllCategory());
-  }, []);
+    dispatch(getHomeProducts());
+    setProducts(productHomePage.products);
+  }, [products]);
 
-  console.log(category);
-
-  const renderCategories = (categories) => {
-    let myCategories = [];
-    categories.map((category) => {
-      myCategories.push(
-        <div
-          className="homePage-card-container"
-          key={category.name}>
-          {
-            category.children.length > 0
-              ? category.children.map((child, index) => (
-                <div key={index} className="homePage-card">
-                  <div className="overlay"></div>
-                  <div className="homePage-card-img-container">
-                    <img src={child.categoryImage} alt="" />
-
-                    <div className="homePage-card-content">
-                      <p className="homePage-card-name">
-                        {child.name}
-                      </p>
-                      <div className="homePage-card-btn-style">
-                        <span>
-                          <button className="homePage-card-btn">
-                            {
-                              child.parentId
-                                ? <Link
-                                  className="homePage-card-btn-link"
-                                  to={`/${child.slug}?cid=${child._id}&type=${child.type}`}>
-                                  SHOP NOW
-                                </Link>
-                                : <span>SHOP NOW</span>
-                            }
-                          </button>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))
-              : null
-          }
-        </div>
-      );
-    })
-    return myCategories;
-  }
-
+  useEffect(() => {
+    dispatch(getReviews());
+    setReviews(product.reviews);
+  }, [reviews]);
 
   return (
-    <div className="grid">
-      <h3>Categories</h3>
-      {renderCategories(category.categories)}
+    <div className="commonContainer">
+      <h3>Products</h3>
+      <Carousel itemsToShow={2}>
+        {productHomePage.products?.map((prod, index) => (
+          <ProductCard
+            key={index}
+            prod={prod}
+            reviews={product.reviews}
+          />
+        ))}
+      </Carousel>
     </div>
   );
 }

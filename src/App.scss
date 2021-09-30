@@ -1,13 +1,7 @@
 * {
   font-family: "Roboto", sans-serif;
 }
-.flexRow {
-  display: flex;
-}
-.sb {
-  justify-content: space-between;
-}
-.grid {
+.commonContainer {
   width: 1200px;
   max-width: 100%;
   margin: 0 auto;

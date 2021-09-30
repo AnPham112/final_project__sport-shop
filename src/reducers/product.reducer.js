@@ -24,26 +24,6 @@ export default (state = initState, action) => {
         }
       }
       break;
-    case productConstants.GET_PRODUCTS_PAGE_REQUEST:
-      state = {
-        ...state,
-        pageRequest: true
-      }
-      break;
-    case productConstants.GET_PRODUCTS_PAGE_SUCCESS:
-      state = {
-        ...state,
-        page: action.payload.page,
-        pageRequest: false
-      }
-      break;
-    case productConstants.GET_PRODUCTS_PAGE_FAILURE:
-      state = {
-        ...state,
-        pageRequest: false,
-        error: action.payload.error
-      }
-      break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST:
       state = {
         ...state,
@@ -58,6 +38,44 @@ export default (state = initState, action) => {
       }
       break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
+      break;
+    case productConstants.CREATE_REVIEW_REQUEST:
+      state = {
+        ...state,
+        loading: true
+      }
+      break;
+    case productConstants.CREATE_REVIEW_SUCCESS:
+      state = {
+        ...state,
+        loading: false
+      }
+      break;
+    case productConstants.CREATE_REVIEW_FAILURE:
+      state = {
+        ...state,
+        loading: false
+      }
+      break;
+    case productConstants.GET_ALL_REVIEWS_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      }
+      break;
+    case productConstants.GET_ALL_REVIEWS_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        reviews: action.payload.reviews
+      }
+      break;
+    case productConstants.GET_ALL_REVIEWS_FAILURE:
       state = {
         ...state,
         loading: false,

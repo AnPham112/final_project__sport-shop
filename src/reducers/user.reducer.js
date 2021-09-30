@@ -2,7 +2,7 @@ import { userConstants } from "../actions/constants";
 
 const initState = {
   address: [],
-  order: [],
+  orders: [],
   orderDetails: {},
   user: {},
   error: null,

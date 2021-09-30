@@ -11,6 +11,7 @@ import CheckoutPage from './containers/CheckoutPage';
 import OrderPage from './containers/OrderPage';
 import OrderDetailsPage from './containers/OrderDetailsPage';
 import WishListPage from './containers/WishlListPage';
+import OnlinePayment from './containers/OnlinePayment';
 
 function App() {
   const auth = useSelector(state => state.auth);
@@ -34,9 +35,11 @@ function App() {
           <Route path="/cart" component={CartPage} />
           <Route path="/wishlist" component={WishListPage} />
           <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/payment" component={OnlinePayment} />
           <Route path="/account/orders" component={OrderPage} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
+
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
       </Router>

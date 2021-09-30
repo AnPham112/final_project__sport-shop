@@ -8,7 +8,7 @@ const Card = (props) => {
       {...props}
     >
       {(props.headerleft || props.headerright) && (
-        <div className="cardHeader">
+        <div className="cardHeader" style={props.cardheaderstyle}>
           {props.headerleft && <div>{props.headerleft}</div>}
           {props.headerright && props.headerright}
         </div>

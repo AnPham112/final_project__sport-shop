@@ -1,7 +1,5 @@
 .footer {
     background-color: rgba(20, 45, 52, 0.9);
-    display: fixed;
-    bottom: 0;
     width: 100%;
     color: #fff;
 }
