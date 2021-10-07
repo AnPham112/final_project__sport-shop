@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Layout from '../../components/Layout';
 import ThankCustomer from '../../components/ThankCustomer';
 import './style.css';
 
@@ -36,9 +35,7 @@ const OnlinePayment = ({ totalPrice }) => {
 
   if (paidFor) {
     return (
-      <Layout>
-        <ThankCustomer />
-      </Layout>
+      <ThankCustomer />
     );
   }
 
@@ -53,7 +50,9 @@ const OnlinePayment = ({ totalPrice }) => {
   return (
     <div className="onlinePayment-wrapper">
       <div>Total: ${totalPrice}</div>
-      <div className="payWithPaypal-btn" ref={paypalRef}
+      <div
+        className="payWithPaypal-btn"
+        ref={paypalRef}
       />
     </div>
   );

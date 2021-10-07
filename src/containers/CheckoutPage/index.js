@@ -226,7 +226,9 @@ const CheckoutPage = (props) => {
 
   if (confirmOrder) {
     return (
-      <ThankCustomer />
+      <Layout>
+        <ThankCustomer />
+      </Layout>
     );
   }
 
@@ -267,6 +269,7 @@ const CheckoutPage = (props) => {
                           className="input-textField"
                           label="Email"
                           value={email}
+                          inputProps={{ style: { fontSize: 13 } }}
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
@@ -276,6 +279,7 @@ const CheckoutPage = (props) => {
                           type="password"
                           label="Password"
                           value={password}
+                          inputProps={{ style: { fontSize: 13 } }}
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>

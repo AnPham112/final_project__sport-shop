@@ -25,10 +25,13 @@
 .right {
     flex: 4;
 }
-h2 {
+.left h2,
+.center h2,
+.right h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    color: #fd7f2c;
 }
 .left .content p {
     margin: 0;
@@ -106,7 +109,7 @@ h2 {
     width: 90%;
     font-size: 1rem;
     margin-top: 0.5rem;
-    background: linear-gradient(30deg, #f7a349, #df3a00 80%);
+    background: linear-gradient(30deg, #f7a349 65%, #df3a00);
     text-align: center;
     cursor: pointer;
 }

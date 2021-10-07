@@ -28,7 +28,7 @@ function App() {
   }, [auth.authenticate]);
 
   return (
-    <div >
+    <div className="App">
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />

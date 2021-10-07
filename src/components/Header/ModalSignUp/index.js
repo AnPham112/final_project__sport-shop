@@ -25,7 +25,7 @@ const ModalSignUp = (props) => {
       .max(60, 'Password is too long')
   });
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });

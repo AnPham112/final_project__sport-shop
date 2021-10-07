@@ -13,13 +13,20 @@ const ProductStore = (props) => {
   const priceRange = product.priceRange;
   const dispatch = useDispatch();
 
+  const breakPoints = [
+    { width: 1, itemsToShow: 1, pagination: false },
+    { width: 550, itemsToShow: 2, pagination: false },
+    { width: 800, itemsToShow: 3, pagination: false },
+    { width: 1150, itemsToShow: 4, pagination: false },
+  ]
+
   useEffect(() => {
     const { match } = props;
     dispatch(getProductsBySlug(match.params.slug));
   }, []);
 
   return (
-    <>
+    <div style={{ height: '100%' }}>
       {Object.keys(product.productsByPrice).map((key, index) => {
         return (
           <Card
@@ -29,7 +36,7 @@ const ProductStore = (props) => {
             style={{ width: 'calc(100%-40px)', margin: '20px' }}
           >
             {product.productsByPrice[key].length > 0 ? (
-              <Carousel itemsToShow={4}>
+              <Carousel breakPoints={breakPoints} pagination={false} >
                 {
                   product.productsByPrice[key].map((product, index) => (
                     <Link
@@ -50,14 +57,13 @@ const ProductStore = (props) => {
                     </Link>
                   ))
                 }
-
               </Carousel>
             )
               : <></>}
           </Card>
         );
       })}
-    </>
+    </div>
   );
 }
 

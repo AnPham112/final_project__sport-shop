@@ -1,12 +1,11 @@
 .onlinePayment-wrapper {
     display: flex;
-    width: 40%;
     padding: 20px;
-    background-color: rgb(124, 124, 124);
-    height: 100%;
+    background-color: rgb(153, 153, 153);
     flex-direction: column;
     margin: 20px auto;
     color: #fff;
+    text-align: center;
 }
 .payWithPaypal-btn {
     width: 50%;

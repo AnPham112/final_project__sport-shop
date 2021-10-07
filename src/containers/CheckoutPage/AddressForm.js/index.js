@@ -67,21 +67,20 @@ const AddressForm = (props) => {
               className="input-textField"
               label="Name"
               value={name}
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setName(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
           <div className="textField-container">
             <TextField
               className="input-textField"
               label="Mobile phone number"
+              type="number"
               value={mobileNumber}
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setMobileNumber(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
         </div>
@@ -91,10 +90,10 @@ const AddressForm = (props) => {
               className="input-textField"
               label="Pincode"
               value={pinCode}
+              type="number"
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setPinCode(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
           <div className="textField-container">
@@ -102,10 +101,9 @@ const AddressForm = (props) => {
               className="input-textField"
               label="Locality"
               value={locality}
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setLocality(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
         </div>
@@ -115,10 +113,9 @@ const AddressForm = (props) => {
               className="input-textField"
               label="City/District/Town"
               value={cityDistrictTown}
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setCityDistrictTown(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
         </div>
@@ -128,29 +125,32 @@ const AddressForm = (props) => {
               className="input-textField"
               label="Address details"
               value={address}
+              inputProps={{ style: { fontSize: 13 } }}
               onChange={(e) => setAddress(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
         </div>
         <div className="addressType-content">
           <label className="addressType-label">Address type</label>
-          <div style={{ display: 'flex', marginTop: '0.8rem', width: '50%' }}>
-            <div className="textField-container">
-              <button style={{ width: '100%' }} className="addressType-btn" onClick={(e) => {
-                e.preventDefault();
-                setAddressType("home");
-              }}>
+          <div className="addressType-btn-actions">
+            <div className="addressType-btn-container">
+              <button
+                style={{ width: '100%' }}
+                className="addressType-btn" onClick={(e) => {
+                  e.preventDefault();
+                  setAddressType("home");
+                }}>
                 Home
               </button>
             </div>
-            <div className="textField-container">
-              <button style={{ width: '100%' }} className="addressType-btn" onClick={(e) => {
-                e.preventDefault();
-                setAddressType("work")
-              }}>
+            <div className="addressType-btn-container">
+              <button
+                style={{ width: '100%' }}
+                className="addressType-btn" onClick={(e) => {
+                  e.preventDefault();
+                  setAddressType("work")
+                }}>
                 Workplace
               </button>
             </div>

@@ -21,8 +21,17 @@
     font-size: 0.8rem;
 }
 .addressType-label {
-    font-size: 1rem;
+    font-size: 14px;
     margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+.addressType-btn-actions {
+    display: flex;
+    margin-top: 0.8rem;
+}
+.addressType-btn-container {
+    width: 100%;
+    margin: 10px;
 }
 .addressType-btn {
     padding: 0.8rem 0;

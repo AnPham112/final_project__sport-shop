@@ -23,53 +23,6 @@ const Modal = (props) => {
   );
 }
 
-// const Input = (props) => {
-//   const [focus, setFocus] = useState(props.value === '' ? false : true);
-//   return (
-//     <div
-//       className="reusableInput"
-//       style={props.style}
-//     >
-//       <label className={`label ${focus ? "focus" : ""}`} >
-//         {props.label && `${props.label}`}
-//       </label>
-//       <input
-//         className="input"
-//         type={props.type}
-//         value={props.value}
-//         onChange={props.onChange}
-//         onFocus={(e) => {
-//           setFocus(true);
-//         }}
-//       />
-//     </div>
-//   );
-// }
-
-// const Button = (props) => {
-//   const onClick = () => {
-//     props.onClick && props.onClick();
-//   };
-//   return (
-//     <div>
-//       <button
-//         className="reusableButton"
-//         style={{
-//           backgroundColor: props.bgColor,
-//           color: props.textColor,
-//           fontSize: props.fontSize,
-//           borderRadius: props.borderRadius,
-//           ...props.style
-//         }}
-//         onClick={onClick}
-//       >
-//         {props.icon && props.icon}
-//         {props.title && props.title}
-//       </button>
-//     </div >
-//   );
-// }
-
 const DropdownMenu = (props) => {
   return (
     <div className="headerDropdownContainer">

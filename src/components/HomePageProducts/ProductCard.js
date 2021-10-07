@@ -27,7 +27,9 @@ const ProductCard = ({ reviews, prod }) => {
         <span className="homePage-productName">{prod.name}</span>
         <span className="homePage-productName">${prod.price}</span>
       </div>
-      <span className="homePage-averageRating">{(averageStarRating).toFixed(2)} <IoIosStar /></span>
+      <span className="homePage-averageRating">{isNaN(averageStarRating) ? <span>The product has no ratings yet</span> : (averageStarRating).toFixed(2)}
+        {isNaN(averageStarRating) ? <></> : <span><IoIosStar /></span>}
+      </span>
       <span className="homePage-productDescription">{prod.description}</span>
       <Link
         className="homePage-card-btn"
@@ -35,7 +37,7 @@ const ProductCard = ({ reviews, prod }) => {
       >
         View
       </Link>
-    </div>
+    </div >
   );
 }
 export default ProductCard;

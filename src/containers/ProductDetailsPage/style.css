@@ -72,15 +72,15 @@
     color: #777;
     display: inline-block;
     font-size: 12px;
-    margin: 0 10px;
+    margin: 0 0.3rem 0 0;
     font-weight: 600;
 }
 .productDetails {
-    margin: 10px 0 0 10px;
+    margin: 0 0 0 10px;
     background-color: #ffffff;
     padding: 5px;
     border-radius: 5px;
-    min-width: 380px;
+    /* min-width: 380px; */
 }
 .productDetails .productTitle {
     margin: 0.5rem 0;
@@ -118,7 +118,6 @@
     font-size: 1rem;
     color: #d0011b;
     background-color: rgba(208, 1, 27, 0.08);
-    border: 0;
     outline: none;
     padding: 1rem 1.5rem;
     border: 1px solid #d0011b;

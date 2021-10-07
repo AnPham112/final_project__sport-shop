@@ -19,8 +19,11 @@ const AverageStarRating = ({ reviews, product }) => {
   const averageStarRating = totalStar / totalReviews;
 
   return (
-    <span className="averageRating">
-      {(averageStarRating).toFixed(2)} <IoIosStar />
+    // <span className="averageRating">
+    //   {(averageStarRating).toFixed(2)} <IoIosStar />
+    // </span>
+    <span className="averageRating">{isNaN(averageStarRating) ? <span>The product has no ratings yet</span> : (averageStarRating).toFixed(2)}
+      {isNaN(averageStarRating) ? <></> : <span><IoIosStar /></span>}
     </span>
   );
 }

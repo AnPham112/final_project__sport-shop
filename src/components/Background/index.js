@@ -2,11 +2,6 @@ import React from 'react';
 import './style.scss';
 import logo from '../../images/logo.png'
 
-/**
-* @author
-* @function Background
-**/
-
 const Background = (props) => {
   return (
     <div className="background">

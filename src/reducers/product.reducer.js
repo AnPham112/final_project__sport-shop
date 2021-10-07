@@ -94,12 +94,6 @@ export default (state = initState, action) => {
         loading: false
       }
       break;
-    case productConstants.CREATE_REVIEW_FAILURE:
-      state = {
-        ...state,
-        loading: false
-      }
-      break;
     case productConstants.GET_ALL_REVIEWS_REQUEST:
       state = {
         ...state,

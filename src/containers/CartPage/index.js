@@ -44,6 +44,64 @@ const CartPage = (props) => {
     return (
       <>
         <div className="cartContainer">
+          <div style={{ overflowX: 'auto', margin: '0 0.5rem' }}>
+            <table className="content-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Unit price</th>
+                  <th>Quantity</th>
+                  <th>Total price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              {Object.keys(cartItems).map((key, index) => (
+                <tbody key={index}>
+                  <tr>
+                    <td>
+                      <div className="productInformation">
+                        <div className="cartProImgContainer">
+                          <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
+                        </div>
+                        <span className="productInformation-name">{cartItems[key].name}</span>
+                      </div>
+                    </td>
+                    <td>${cartItems[key].price}</td>
+                    <td>
+                      <CartItem
+                        key={index}
+                        cartItem={cartItems[key]}
+                        onQuantityInc={onQuantityIncrement}
+                        onQuantityDec={onQuantityDecrement}
+                      />
+                    </td>
+                    <td>
+                      <TotalPriceEachItem
+                        key={index}
+                        cartItem={cartItems[key]}
+                      />
+                    </td>
+                    <td>
+                      <CartActions
+                        key={index}
+                        cartItem={cartItems[key]}
+                        onRemoveCartItem={onRemoveCartItem}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <Layout MenuHeader Footer>
+      <div className="cartContainer">
+        <div style={{ overflowX: 'auto', margin: '0 0.5rem' }}>
           <table className="content-table">
             <thead>
               <tr>
@@ -54,8 +112,9 @@ const CartPage = (props) => {
                 <th>Actions</th>
               </tr>
             </thead>
+            {/* {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">No items are added</div>} */}
             {Object.keys(cartItems).map((key, index) => (
-              <tbody>
+              <tbody key={index}>
                 <tr>
                   <td>
                     <div className="productInformation">
@@ -92,61 +151,6 @@ const CartPage = (props) => {
             ))}
           </table>
         </div>
-      </>
-    );
-  }
-
-  return (
-    <Layout MenuHeader Footer>
-      <div className="cartContainer">
-        <table className="content-table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Unit price</th>
-              <th>Quantity</th>
-              <th>Total price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          {/* {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">No items are added</div>} */}
-          {Object.keys(cartItems).map((key, index) => (
-            <tbody>
-              <tr>
-                <td>
-                  <div className="productInformation">
-                    <div className="cartProImgContainer">
-                      <img src={generatePublicUrl(cartItems[key].img)} alt={''} />
-                    </div>
-                    <span className="productInformation-name">{cartItems[key].name}</span>
-                  </div>
-                </td>
-                <td>${cartItems[key].price}</td>
-                <td>
-                  <CartItem
-                    key={index}
-                    cartItem={cartItems[key]}
-                    onQuantityInc={onQuantityIncrement}
-                    onQuantityDec={onQuantityDecrement}
-                  />
-                </td>
-                <td>
-                  <TotalPriceEachItem
-                    key={index}
-                    cartItem={cartItems[key]}
-                  />
-                </td>
-                <td>
-                  <CartActions
-                    key={index}
-                    cartItem={cartItems[key]}
-                    onRemoveCartItem={onRemoveCartItem}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          ))}
-        </table>
         <div className="placeOrder-container">
           <PriceDetails
             totalItem={Object.keys(cart.cartItems).reduce((qty, key) => {

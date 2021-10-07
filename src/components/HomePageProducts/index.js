@@ -13,6 +13,13 @@ const HomePageProducts = (props) => {
   const [reviews, setReviews] = useState([]);
   const dispatch = useDispatch();
 
+  const breakPoints = [
+    { width: 1, itemsToShow: 1, pagination: false },
+    { width: 550, itemsToShow: 1, pagination: false },
+    { width: 800, itemsToShow: 2, pagination: false },
+    { width: 1150, itemsToShow: 3, pagination: false },
+  ]
+
   useEffect(() => {
     dispatch(getHomeProducts());
     setProducts(productHomePage.products);
@@ -26,7 +33,7 @@ const HomePageProducts = (props) => {
   return (
     <div className="commonContainer">
       <h3>Products</h3>
-      <Carousel itemsToShow={2}>
+      <Carousel breakPoints={breakPoints}>
         {productHomePage.products?.map((prod, index) => (
           <ProductCard
             key={index}

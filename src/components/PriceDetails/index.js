@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const PriceDetails = ({ items, totalItem, totalPrice }) => {
+const PriceDetails = ({ totalItem, totalPrice }) => {
   return (
     <div className="totalPrice-container">
       <div>Total price ({totalItem} items):</div>

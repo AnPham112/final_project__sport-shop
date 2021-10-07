@@ -59,8 +59,14 @@ const ProductDetailsPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader>
+    <Layout MenuHeader Footer>
       <div className="commonContainer">
+        <div className="breed">
+          <ul>
+            <li><Link to="/">Home</Link><IoIosArrowForward /></li>
+            <li><Link to='#'>{product.productDetails?.name}</Link></li>
+          </ul>
+        </div>
         <div className="productDescriptionContainer">
           <div style={{ display: 'flex' }}>
             <div className="verticalImageStack">
@@ -112,12 +118,6 @@ const ProductDetailsPage = (props) => {
           </div>
           {/*Breed*/}
           <div style={{ width: '100%' }}>
-            <div className="breed">
-              <ul>
-                <li><Link to="/">Home</Link><IoIosArrowForward /></li>
-                <li><Link to='#'>{product.productDetails?.name}</Link></li>
-              </ul>
-            </div>
             {/* product description */}
             <div className="productDetails">
               <div className="productDetails-title">
@@ -126,7 +126,6 @@ const ProductDetailsPage = (props) => {
                   inStock={product.productDetails?.quantity}
                   product={props.match.params}
                 />
-                {/* <span className="productInStock">In stock: {product.productDetails?.quantity}</span> */}
               </div>
               <AverageStarRating
                 reviews={product.reviews}
