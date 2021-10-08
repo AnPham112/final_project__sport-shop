@@ -22,7 +22,7 @@ const ModalSignUp = (props) => {
       .email('Enter a valid email'),
     password: yup.string()
       .required('Password is required')
-      .max(60, 'Password is too long')
+      .max(60, 'Password is too long'),
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -112,4 +112,4 @@ const ModalSignUp = (props) => {
 
 }
 
-export default ModalSignUp
+export default ModalSignUp;

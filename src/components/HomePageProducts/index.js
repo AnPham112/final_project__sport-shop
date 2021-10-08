@@ -15,7 +15,8 @@ const HomePageProducts = (props) => {
 
   const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
-    { width: 550, itemsToShow: 1, pagination: false },
+    { width: 360, itemsToShow: 1, pagination: false },
+    { width: 600, itemsToShow: 2, pagination: false },
     { width: 800, itemsToShow: 2, pagination: false },
     { width: 1150, itemsToShow: 3, pagination: false },
   ]

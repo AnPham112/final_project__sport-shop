@@ -5,12 +5,14 @@ import Layout from '../../components/Layout';
 import Card from '../../components/UI/Card';
 import './style.css';
 import WishListItem from './WishListItem';
+import { Alert } from 'react-bootstrap';
 
 const WishListPage = (props) => {
   const auth = useSelector((state) => state.auth);
   const wishList = useSelector((state) => state.wishList);
   const [wishListItems, setWishListItems] = useState(wishList.wishListItems);
   const dispatch = useDispatch();
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     setWishListItems(wishList.wishListItems);
@@ -21,7 +23,7 @@ const WishListPage = (props) => {
       dispatch(getWishListItems());
     }
     if (!auth.authenticate) {
-      alert('You need to sign in')
+      alert('You have to login to view your wishlist')
     }
   }, [auth.authenticate]);
 

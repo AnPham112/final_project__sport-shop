@@ -37,6 +37,9 @@ const CartPage = (props) => {
   }
 
   const onRemoveCartItem = (_id) => {
+    if (!auth.authenticate) {
+      alert('You have to login to remove products');
+    }
     dispatch(removeCartItem({ productId: _id }));
   }
 
@@ -101,6 +104,7 @@ const CartPage = (props) => {
   return (
     <Layout MenuHeader Footer>
       <div className="cartContainer">
+        {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">You have no products in your shopping cart</div>}
         <div style={{ overflowX: 'auto', margin: '0 0.5rem' }}>
           <table className="content-table">
             <thead>
@@ -112,7 +116,7 @@ const CartPage = (props) => {
                 <th>Actions</th>
               </tr>
             </thead>
-            {/* {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">No items are added</div>} */}
+
             {Object.keys(cartItems).map((key, index) => (
               <tbody key={index}>
                 <tr>

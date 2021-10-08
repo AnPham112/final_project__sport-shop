@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './style.scss';
 import { Link } from 'react-router-dom';
 
@@ -82,9 +82,4 @@ const Breed = (props) => {
   );
 }
 
-export {
-  Modal,
-  DropdownMenu,
-  Anchor,
-  Breed
-}
+export { Modal, DropdownMenu, Anchor, Breed }

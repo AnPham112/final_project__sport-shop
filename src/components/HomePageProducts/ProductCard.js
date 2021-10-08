@@ -23,9 +23,9 @@ const ProductCard = ({ reviews, prod }) => {
   return (
     <div className="homePage-card">
       <img src={generatePublicUrl(prod.productPictures[0].img)} />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className="homePage-product__content">
         <span className="homePage-productName">{prod.name}</span>
-        <span className="homePage-productName">${prod.price}</span>
+        <span className="homePage-productPrice">${prod.price}</span>
       </div>
       <span className="homePage-averageRating">{isNaN(averageStarRating) ? <span>The product has no ratings yet</span> : (averageStarRating).toFixed(2)}
         {isNaN(averageStarRating) ? <></> : <span><IoIosStar /></span>}

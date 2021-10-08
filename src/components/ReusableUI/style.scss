@@ -37,52 +37,6 @@
   margin: 0 auto;
   overflow-x: hidden;
 }
-.reusableInput {
-  min-width: 300px;
-  height: 30px;
-  border-bottom: 2px solid #2874f0;
-  position: relative;
-  margin-top: 25px;
-}
-.reusableInput input {
-  width: 100%;
-  flex: 1;
-  outline: none;
-  border: none;
-  z-index: 1;
-  background: transparent;
-  line-height: 30px;
-}
-.reusableInput .label {
-  position: absolute;
-  top: -8px;
-  line-height: 30px;
-  color: grey;
-  z-index: 0;
-  font-size: 12px;
-  letter-spacing: 1px;
-  transition: all 0.1s ease-in-out;
-}
-.reusableInput .label.focus {
-  top: -20px !important;
-}
-.reusableButton {
-  display: inline-block;
-  padding: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  outline: none;
-  background-color: #fb641b;
-  color: #000;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  border: none;
-  cursor: pointer;
-  border-radius: 0.3rem;
-  &:hover {
-    background-color: #ff5500;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.12);
-  }
-}
 /* Material dropdown */
 .headerDropdownContainer {
   position: relative;
@@ -156,7 +110,6 @@
     margin-left: 0.5rem;
   }
 }
-
 /*Anchor button*/
 .anchorButton {
   background: transparent;

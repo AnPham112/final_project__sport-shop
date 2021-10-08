@@ -35,12 +35,13 @@ html,
 
 @media screen and (max-width: 1200px) {
   .commonContainer {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem !important;
   }
 
   // background home page
   .background__box {
     margin-left: 0.5rem;
+    width: 30% !important;
   }
 
   //slider
@@ -62,7 +63,7 @@ html,
 
 @media screen and (max-width: 768px) {
   .commonContainer {
-    padding: 0.5rem 0.9rem;
+    padding: 0.5rem 0.9rem !important;
   }
   //Navbar
   .dropdown {
@@ -109,7 +110,7 @@ html,
 
   //Footer
   .main-content {
-    flex-direction: column;
+    flex-direction: column !important;
   }
   .right .email-input,
   .right .message-input,
@@ -134,23 +135,23 @@ html,
   .right .content .email-label,
   .right .content .message-label {
     font-size: 0.95rem !important;
-    margin-top: 0.3rem;
-    margin-bottom: 1px;
+    margin-top: 0.3rem !important;
+    margin-bottom: 1px !important;
   }
 
   //Product page
   .productDescriptionContainer {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .productDetailsPage-actionBtns {
-    flex-direction: column;
+    flex-direction: column !important;
     .addToCart-btn {
-      justify-content: center;
+      justify-content: center !important;
     }
     .buyNow-btn {
-      margin-top: 0.5rem;
-      justify-content: center;
+      margin-top: 0.5rem !important;
+      justify-content: center !important;
     }
   }
 
@@ -163,18 +164,35 @@ html,
 }
 
 @media screen and (max-width: 576px) {
-  .addressType-btn-actions {
-    flex-direction: column;
+  //background homepage
+  .background__box {
+    width: 70% !important;
+    margin-left: 0 !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
-
+  //product home page
+  .homePage-product__content {
+    flex-direction: column !important;
+  }
+  .homePage-averageRating {
+    padding: 0.3rem !important;
+  }
+  .addressType-btn-actions {
+    flex-direction: column !important;
+  }
   .paymentOption-container {
-    flex-direction: column;
+    flex-direction: column !important;
     width: 100% !important;
   }
-
   .cod-btn,
   .cia-btn {
     width: 90% !important;
     margin: 10px auto !important;
+  }
+  //slider
+  .homePage-card {
+    margin: 10px 5px !important;
   }
 }

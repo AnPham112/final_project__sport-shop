@@ -213,12 +213,6 @@ const CheckoutPage = (props) => {
     setAddress(address);
   }, [user.address]);
 
-  useEffect(() => {
-    if (confirmOrder && user.placedOrderId) {
-      props.history.push(`/order_details/${user.placedOrderId}`);
-    }
-  }, [user.placedOrderId]);
-
   const userLogin = () => {
     const user = { email, password }
     dispatch(login(user));

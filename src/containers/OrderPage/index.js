@@ -31,14 +31,13 @@ const OrderPage = (props) => {
           breedIcon={<IoIosArrowForward />}
         />
         <div className="orderItems-container">
-          {user.orders?.map((order) => {
-            return order.items?.map((item, index) => (
-              <Card
-                key={index}
-                style={{ margin: '5px auto', width: '1100px' }}
-                headerleft={`My orders`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff' }}
-              >
-                <div className="orderItem-container">
+          <Card
+            style={{ margin: '5px auto', width: '1100px' }}
+            headerleft={`My orders`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff' }}
+          >
+            {user.orders?.map((order) => {
+              return order.items?.map((item, index) => (
+                <div key={index} className="orderItem-container">
                   <div className="orderImg-container">
                     <img
                       className="orderImg"
@@ -53,18 +52,22 @@ const OrderPage = (props) => {
                     <div className="paymentStatus">Payment status: {order.paymentStatus}</div>
                   </div>
                   <Link
+                    style={{ alignSelf: 'center' }}
                     to={`/order_details/${order._id}`}
                   >
                     <button className="viewItemStatus-btn">View item status</button>
                   </Link>
                 </div>
-              </Card>
-            ));
-          })}
+              ));
+            })}
+          </Card>
         </div>
-      </div >
-    </Layout >
+      </div>
+    </Layout>
   );
 }
 
 export default OrderPage;
+
+
+

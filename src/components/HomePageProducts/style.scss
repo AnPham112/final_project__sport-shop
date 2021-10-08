@@ -3,7 +3,7 @@
   overflow: hidden;
   padding: 5px;
   border-radius: 10px;
-  margin: 10px 15px;
+  margin: 10px;
   width: 100%;
 }
 .homePage-card img {
@@ -13,11 +13,15 @@
   object-fit: contain;
   margin: 0 auto;
 }
-.homePage-productName {
+.homePage-product__content {
+  display: flex;
+  justify-content: space-between;
+}
+.homePage-productName,
+.homePage-productPrice {
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: 600;
-
   color: rgb(241, 241, 241);
   margin-top: 0.5rem;
   display: block;

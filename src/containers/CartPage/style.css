@@ -56,8 +56,9 @@
     margin-top: 42px;
 }
 .cartItem-empty {
-    text-align: center;
     font-size: 1rem;
+    margin-left: 0.5rem;
+    color: #fd6a20;
 }
 .content-table {
     border-collapse: collapse;
