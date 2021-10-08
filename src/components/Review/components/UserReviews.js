@@ -24,7 +24,7 @@ const UserReviews = ({ reviews, stars, product, colors, page }) => {
       {finalReviews.map((review, index) => (
         <div className="userReview-container" key={index}>
           <div>
-            <span className="reviewer">{review.writer.firstName} {review.writer.lastName}</span>
+            <span className="reviewer">{review.writer?.firstName} {review.writer?.lastName}</span>
             {stars.map((_, index) => {
               const ratingValue = index + 1
               return (
