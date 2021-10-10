@@ -1,8 +1,10 @@
 .thankYou-container {
     border-radius: 50%;
     background-color: #fff;
-    width: 400px;
-    height: 400px;
+    max-width: 400px;
+    max-height: 400px;
+    min-width: 350px;
+    min-height: 350px;
     margin: 1.5rem auto;
     display: flex;
     align-items: center;
@@ -15,4 +17,15 @@
     font-weight: 600;
     word-wrap: break-word;
     text-align: center;
+}
+.thankYou-viewOrders {
+    background-color: #2874f0;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 3px;
+}
+.thankYou-viewOrders:hover {
+    background-color: #2366d3;
 }

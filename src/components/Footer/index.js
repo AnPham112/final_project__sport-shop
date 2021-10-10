@@ -34,7 +34,7 @@ const Footer = (props) => {
           <div className="left box">
             <h2>About us</h2>
             <div className="content">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+              <p>Welcome to the Fire sport shop, which provides the necessary equipment and supplies for training. Join us and burn your heat, burn your fat.</p>
               <div className="social">
                 <span><IoLogoFacebook className="social-icon" /></span>
                 <span><IoLogoTwitter className="social-icon" /></span>
@@ -44,7 +44,7 @@ const Footer = (props) => {
             </div>
           </div>
           <div className="center box">
-            <h2>Address</h2>
+            <h2>Contact information</h2>
             <div className="content">
               <div className="location">
                 <span><BiCurrentLocation /></span>

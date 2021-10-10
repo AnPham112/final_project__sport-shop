@@ -35,7 +35,10 @@ const OnlinePayment = ({ totalPrice }) => {
 
   if (paidFor) {
     return (
-      <ThankCustomer />
+      <ThankCustomer
+        to='/account/orders'
+        btnTitle='View your orders'
+      />
     );
   }
 

@@ -59,7 +59,7 @@ const ProductDetailsPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader Footer>
+    <Layout MenuHeader>
       <div className="commonContainer">
         <div className="breed">
           <ul>

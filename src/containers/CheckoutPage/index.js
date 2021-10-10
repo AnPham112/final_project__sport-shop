@@ -11,6 +11,7 @@ import OnlinePayment from '../OnlinePayment';
 import ThankCustomer from '../../components/ThankCustomer';
 import './style.css';
 import { TextField } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 const CheckoutStep = (props) => {
@@ -221,7 +222,9 @@ const CheckoutPage = (props) => {
   if (confirmOrder) {
     return (
       <Layout>
-        <ThankCustomer />
+        <ThankCustomer
+          to='/account/orders'
+          btnTitle='View your orders' />
       </Layout>
     );
   }

@@ -46,16 +46,18 @@ const OrderPage = (props) => {
                   </div>
                   <div className="orderItemContent">
                     <div className="orderName">{item.productId?.name}</div>
-                    <div className="orderPrice">Price: ${item.payablePrice}</div>
+                    {/* <div className="orderPrice">Price: ${item.payablePrice}</div> */}
                     <div className="orderQty">Quantity: {item.purchasedQty}</div>
                     <div className="orderTotalPrice">Total: ${item.payablePrice * item.purchasedQty}</div>
                     <div className="paymentStatus">Payment status: {order.paymentStatus}</div>
                   </div>
                   <Link
-                    style={{ alignSelf: 'center' }}
+                    className="viewItemStatus-btn"
+                    // style={{ alignSelf: 'center' }}
                     to={`/order_details/${order._id}`}
                   >
-                    <button className="viewItemStatus-btn">View item status</button>
+                    {/* <button className="viewItemStatus-btn">View item status</button> */}
+                    View item status
                   </Link>
                 </div>
               ));

@@ -102,7 +102,7 @@ const CartPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader Footer>
+    <Layout MenuHeader>
       <div className="cartContainer">
         {Object.keys(cartItems).length === 0 && <div className="cartItem-empty">You have no products in your shopping cart</div>}
         <div style={{ overflowX: 'auto', margin: '0 0.5rem' }}>

@@ -1,7 +1,6 @@
 .orderPage-container {
     max-width: 1100px;
     margin: 5px auto;
-    height: 80vh;
     margin-bottom: 2rem;
 }
 .orderItems-container {
@@ -14,9 +13,8 @@
     display: flex;
 }
 .orderImg-container {
-    width: 80px;
+    min-width: 80px;
     overflow: hidden;
-    text-align: center;
 }
 .orderImg {
     max-width: 80px;
@@ -27,32 +25,17 @@
     flex: 1;
     align-items: center;
 }
-.orderName {
-    box-sizing: border-box;
-    padding: 0 25px;
-    font-size: 0.9rem;
-}
-.orderPrice {
-    box-sizing: border-box;
-    padding: 0 25px;
-    font-size: 0.9rem;
-}
-.orderQty {
-    box-sizing: border-box;
-    padding: 0 25px;
-    font-size: 0.9rem;
-}
-.orderTotalPrice {
-    box-sizing: border-box;
-    padding: 0 25px;
-    font-size: 0.9rem;
-}
+.orderName,
+.orderPrice,
+.orderQty,
+.orderTotalPrice,
 .paymentStatus {
     box-sizing: border-box;
-    padding: 0 25px;
+    padding: 0 18px;
     font-size: 0.9rem;
 }
 .viewItemStatus-btn {
+    text-decoration: none;
     padding: 0.7rem 1rem;
     color: #fff;
     font-size: 1rem;
@@ -60,6 +43,7 @@
     border: 0;
     outline: none;
     border-radius: 3px;
+    align-self: center;
 }
 .viewItemStatus-btn:hover {
     background-color: rgb(34, 75, 128);

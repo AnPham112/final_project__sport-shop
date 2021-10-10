@@ -44,18 +44,15 @@ const OrderDetailsPage = (props) => {
     <Layout MenuHeader>
       <div className="orderDetailsPage-container">
         <Card style={{ margin: "10px 0" }} >
-          <div className="delAdrContainer">
-            <div className="delAdrDetails">
-              <p className="delName">
-                <span className="delName-title">Customer name:&nbsp;</span>
+          <div className="orderDetailsPage-addressContainer">
+            <div className="orderDetailsPage-addressDetails">
+              <p className="orderDetailsPage-customerName"><span className="customerName-title">Customer name:&nbsp;</span>
                 {orderDetails.address.name}
               </p>
-              <p className="delAddress">
-                <span className="delAddress-title">Delivery Address:&nbsp;</span>
+              <p className="orderDetailsPage-deliveryAddress"><span className="deliveryAddress-title">Delivery Address:&nbsp;</span>
                 {orderDetails.address.address}
               </p>
-              <p className="delPhoneNumber">
-                <span className="delPhoneNumber-title">Phone number:&nbsp;</span>
+              <p className="orderDetailsPage-customerPhoneNumber"><span className="customerPhoneNumber-title">Phone number:&nbsp;</span>
                 {orderDetails.address.mobileNumber}
               </p>
             </div>
@@ -65,35 +62,39 @@ const OrderDetailsPage = (props) => {
         {orderDetails.items.map((item, index) => (
           <Card
             key={index}
-            style={{ display: "flex", padding: "20px", margin: "10px 0" }}>
+            className="deliveryItem-card"
+          >
             <div style={{ display: 'flex' }}>
-              <div className="delItemImgContainer">
+              <div className="deliveryItemImgContainer">
                 <img src={generatePublicUrl(item.productId?.productPictures[0]?.img)} alt="" />
               </div>
-              <div className="delItem-conatiner">
-                <div className="delItemName">{item.productId?.name}</div>
+              <div className="deliveryItemInfo">
+                <div className="deliveryItemName">{item.productId?.name}</div>
                 <Price value={item.payablePrice * item.purchasedQty} />
               </div>
             </div>
-            <div className="deliveryTrack-container">
-              <div className="orderTrack">
-                {orderDetails.orderStatus?.map((status, index) => (
-                  <div
-                    key={index}
-                    className={`orderStatus ${status.isCompleted ? "active" : ""}`}>
-                    <div className={`point ${status.isCompleted ? "active" : ""}`}>
+            <div style={{ display: 'flex' }}>
+              <div className="deliveryTrack-container">
+                <div className="orderTrack">
+                  {orderDetails.orderStatus?.map((status, index) => (
+                    <div
+                      key={index}
+                      className={`orderStatus ${status.isCompleted ? "active" : ""}`}>
+                      <div className={`point ${status.isCompleted ? "active" : ""}`}>
+                      </div>
+                      <div className="orderInfo">
+                        <div className="status">{status.type}</div>
+                        <div className="date">{formatDate(status.date)}</div>
+                      </div>
                     </div>
-                    <div className="orderInfo">
-                      <div className="status">{status.type}</div>
-                      <div className="date">{formatDate(status.date)}</div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="deliveryDate">
-              {orderDetails.orderStatus[3].isCompleted &&
-                `Delivered on ${formatDate2(orderDetails.orderStatus[3]?.date)}`}
+              <div className="deliveryDate">
+                {/* {orderDetails.orderStatus[3].isCompleted &&
+                  `Delivered on ${formatDate2(orderDetails.orderStatus[3]?.date)}`} */}
+                20/10/2000
+              </div>
             </div>
           </Card>
         ))}

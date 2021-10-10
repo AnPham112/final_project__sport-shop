@@ -79,19 +79,16 @@ html,
   .dropdown .headerDropdownMenu li a {
     font-size: 0.7rem !important;
   }
-
   //Menu header
   .menuHeader > ul > li > span {
     padding: 0 1.2rem !important;
     font-size: 0.75rem !important;
   }
-
   //Background homepage
   .background__box {
     padding: 1.3rem !important;
     width: 40% !important;
   }
-
   //Slider
   .eRmJbc {
     width: 35px !important;
@@ -107,7 +104,6 @@ html,
     line-height: 35px !important;
     font-size: 1.2em !important;
   }
-
   //Footer
   .main-content {
     flex-direction: column !important;
@@ -138,12 +134,10 @@ html,
     margin-top: 0.3rem !important;
     margin-bottom: 1px !important;
   }
-
-  //Product page
+  //Product detail page
   .productDescriptionContainer {
     flex-direction: column !important;
   }
-
   .productDetailsPage-actionBtns {
     flex-direction: column !important;
     .addToCart-btn {
@@ -154,16 +148,25 @@ html,
       justify-content: center !important;
     }
   }
-
   .productDetails {
     margin: 0 !important;
   }
   .writeFeedback {
     width: 100% !important;
   }
+  // Order details page
+  .deliveryItem-card {
+    flex-direction: column !important;
+  }
+  .deliveryTrack-container {
+    padding: 30px 20px !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
+  .option-item {
+    margin: 0 0.4rem !important;
+  }
   //background homepage
   .background__box {
     width: 70% !important;
@@ -194,5 +197,29 @@ html,
   //slider
   .homePage-card {
     margin: 10px 5px !important;
+  }
+
+  //Orders page
+  .orderItem-container {
+    flex-direction: column !important;
+  }
+  .orderItemContent {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .orderName,
+  .orderQty,
+  .orderTotalPrice,
+  .paymentStatus {
+    font-size: 0.8rem !important;
+    padding: 5px 0 !important;
+  }
+  .viewItemStatus-btn {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  // Order details page
+  .orderTrack {
+    width: 200px !important;
   }
 }
