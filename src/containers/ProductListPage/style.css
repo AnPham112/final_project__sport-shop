@@ -25,4 +25,5 @@
 .product-info__name {
     margin: 5px 0;
     font-size: 1rem;
+    font-weight: 600;
 }
