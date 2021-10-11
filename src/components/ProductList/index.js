@@ -10,8 +10,6 @@ const ProductList = () => {
     dispatch(getAllCategory());
   }, []);
 
-  console.log(category.categories);
-
   const renderProductList = (categories) => {
     let myProducts = [];
     categories.map((category) => {

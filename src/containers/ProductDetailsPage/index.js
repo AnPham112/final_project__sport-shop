@@ -197,6 +197,7 @@ const ProductDetailsPage = (props) => {
                     }}>
                     Send feedback
                   </button>
+
                 </form>
               </div>
               <h3>Ratings & Reviews</h3>

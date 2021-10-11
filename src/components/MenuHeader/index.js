@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import './style.css';
 import { getAllCategory } from '../../actions/category.action';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 const MenuHeader = (props) => {
   const category = useSelector(state => state.category);

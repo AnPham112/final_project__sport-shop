@@ -15,8 +15,7 @@ const Background = (props) => {
         </div>
       </div>
     </div>
-  )
-
+  );
 }
 
-export default Background
+export default Background;

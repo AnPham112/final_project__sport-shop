@@ -9,7 +9,8 @@ const initState = {
   error: null,
   productDetails: {},
   loading: false,
-  reviews: []
+  reviews: [],
+  message: null,
 }
 
 export default (state = initState, action) => {
@@ -59,7 +60,8 @@ export default (state = initState, action) => {
     case productConstants.CREATE_REVIEW_FAILURE:
       state = {
         ...state,
-        loading: false
+        loading: false,
+        message: action.message
       }
       break;
     case productConstants.GET_ALL_REVIEWS_REQUEST:

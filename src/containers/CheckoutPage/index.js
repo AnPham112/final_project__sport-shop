@@ -243,7 +243,7 @@ const CheckoutPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader Footer>
+    <Layout MenuHeader>
       <div className="cartContainer">
         <div className="checkoutContainer">
           {/* check if user logged in or not */}

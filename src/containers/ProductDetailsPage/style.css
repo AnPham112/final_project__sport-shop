@@ -101,10 +101,10 @@
     color: #212121;
 }
 .price {
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     font-size: 1.2rem;
     font-weight: 600;
-    display: flex;
+    display: block;
     align-items: center;
 }
 .productDetailsPage-actionBtns {

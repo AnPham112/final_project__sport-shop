@@ -5,7 +5,6 @@ import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard';
 import './style.scss';
 
-
 const HomePageProducts = (props) => {
   const productHomePage = useSelector((state) => state.productHomePage);
   const product = useSelector((state) => state.product);

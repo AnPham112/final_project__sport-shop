@@ -7,8 +7,6 @@ import './style.scss';
 const ProductCard = ({ reviews, prod }) => {
   const [productReviews, setProductReviews] = useState([]);
 
-  console.log(reviews);
-
   useEffect(() => {
     const filterReviews = reviews.filter((review) => {
       return review.productId === prod._id
@@ -43,4 +41,5 @@ const ProductCard = ({ reviews, prod }) => {
     </div >
   );
 }
+
 export default ProductCard;

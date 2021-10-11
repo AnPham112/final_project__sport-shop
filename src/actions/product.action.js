@@ -67,8 +67,8 @@ export const createReview = (payload) => {
         dispatch(getReviews());
       }
     } catch (error) {
-      console.log(error);
-      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE });
+      const { message } = error.response.data;
+      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE, message });
     }
   }
 }
