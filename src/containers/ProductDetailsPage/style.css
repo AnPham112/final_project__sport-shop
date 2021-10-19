@@ -54,27 +54,6 @@
     max-height: 100%;
     object-fit: cover;
 }
-.breed ul {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-.breed ul li {
-    list-style: none;
-    margin-right: 5px;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-}
-.breed ul li a {
-    text-decoration: none;
-    color: #777;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 0.3rem 0 0;
-    font-weight: 600;
-}
 .productDetails {
     margin: 0 0 0 10px;
     background-color: #ffffff;
@@ -175,4 +154,7 @@
 }
 .sendFeedback-btn:hover {
     background: #eb7c22;
+}
+.productDescriptionAllImgContainer {
+    display: flex;
 }

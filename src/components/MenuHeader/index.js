@@ -14,7 +14,8 @@ const MenuHeader = (props) => {
 
   const renderCategories = (categories) => {
     let myCategories = [];
-    for (let category of categories) {
+    // for (let category of categories) 
+    categories.map((category) => {
       myCategories.push(
         <li key={category.name}>
           {
@@ -27,7 +28,7 @@ const MenuHeader = (props) => {
           {category.children.length > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
         </li>
       );
-    }
+    })
     return myCategories;
   }
 

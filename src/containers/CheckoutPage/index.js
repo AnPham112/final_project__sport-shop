@@ -11,8 +11,6 @@ import OnlinePayment from '../OnlinePayment';
 import ThankCustomer from '../../components/ThankCustomer';
 import './style.css';
 import { TextField } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-
 
 const CheckoutStep = (props) => {
   return (
@@ -224,7 +222,7 @@ const CheckoutPage = (props) => {
       <Layout>
         <ThankCustomer
           to='/account/orders'
-          btnTitle='View your orders' />
+          btnTitle='View your order' />
       </Layout>
     );
   }
@@ -243,8 +241,8 @@ const CheckoutPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader>
-      <div className="cartContainer">
+    <Layout>
+      <div className="checkoutPageContainer">
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
           <CheckoutStep
@@ -260,7 +258,7 @@ const CheckoutPage = (props) => {
               ) :
                 (
                   <>
-                    <div style={{ display: 'flex' }}>
+                    <div className="checkoutLogin-container">
                       <div className="textField-container">
                         <TextField
                           className="input-textField"
@@ -282,11 +280,10 @@ const CheckoutPage = (props) => {
                       </div>
                     </div>
                     <div className="checkoutLogin-btn-container">
-                      <input
+                      <button
                         onClick={userLogin}
                         className="checkoutLogin-btn"
-                        type="submit"
-                        value="Login" />
+                      >Login</button>
                     </div>
                   </>
                 )

@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetailsById, addToCart, getReviews, createReview } from '../../actions';
 import Layout from '../../components/Layout';
 import { generatePublicUrl } from '../../urlConfig';
-import { IoIosArrowForward, IoMdCart } from 'react-icons/io';
+import { IoMdCart } from 'react-icons/io';
 import { AiFillThunderbolt } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { productConstants } from '../../actions/constants';
 import InStock from '../../components/UI/InStock';
@@ -61,20 +60,14 @@ const ProductDetailsPage = (props) => {
   return (
     <Layout MenuHeader>
       <div className="commonContainer">
-        <div className="breed">
-          <ul>
-            <li><Link to="/">Home</Link><IoIosArrowForward /></li>
-            <li><Link to='#'>{product.productDetails?.name}</Link></li>
-          </ul>
-        </div>
         <div className="productDescriptionContainer">
-          <div style={{ display: 'flex' }}>
+          <div className="productDescriptionAllImgContainer">
             <div className="verticalImageStack">
               {product.productDetails.productPictures.map((thumb, index) => (
                 <div
                   key={index}
                   onClick={() => setActiveThumb(index)}
-                  className={`thumbnail ${index == activeThumb ? 'active' : ''}`}>
+                  className={`thumbnail ${index === activeThumb ? 'active' : ''}`}>
                   <img
                     className={`thumbnailImg`}
                     src={generatePublicUrl(thumb.img)}
@@ -116,7 +109,7 @@ const ProductDetailsPage = (props) => {
               </div>
             </div>
           </div>
-          {/*Breed*/}
+
           <div style={{ width: '100%' }}>
             {/* product description */}
             <div className="productDetails">

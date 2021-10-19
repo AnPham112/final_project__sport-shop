@@ -10,6 +10,11 @@ export const signup = (user) => {
       res = await axios.post(`/signup`, user);
       if (res.status === 201) {
         dispatch({ type: authConstants.SIGNUP_SUCCESS });
+        swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'sign up successfully'
+        });
         const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
@@ -25,7 +30,11 @@ export const signup = (user) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      swal.fire({
+        icon: 'error',
+        title: 'Failure!',
+        text: error.response.data.message
+      })
     }
   };
 }
@@ -33,28 +42,38 @@ export const signup = (user) => {
 export const login = (user) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGIN_REQUEST });
-    const res = await axios.post(`/signin`, { ...user });
-    if (res.status === 200) {
-      let { token, user } = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch({
-        type: authConstants.LOGIN_SUCCESS,
-        payload: { user, token }
-      });
-      swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Login successfully'
-      })
-    } else {
-      if (res.status === 400) {
+    try {
+      const res = await axios.post(`/signin`, { ...user });
+      if (res.status === 200) {
+        let { token, user } = res.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
         dispatch({
-          type: authConstants.LOGIN_FAILURE,
-          payload: { error: res.data.error }
+          type: authConstants.LOGIN_SUCCESS,
+          payload: { user, token }
         });
+        swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Login successfully'
+        })
+      } else {
+        if (res.status === 400) {
+          dispatch({
+            type: authConstants.LOGIN_FAILURE,
+            payload: { error: res.data.error }
+          });
+        }
       }
+    } catch (error) {
+      const { message } = error.response.data;
+      swal.fire({
+        icon: 'error',
+        title: 'Failure!',
+        text: message
+      });
     }
+
   }
 }
 

@@ -41,7 +41,7 @@ const OrderDetailsPage = (props) => {
   }
 
   return (
-    <Layout MenuHeader>
+    <Layout>
       <div className="orderDetailsPage-container">
         <Card style={{ margin: "10px 0" }} >
           <div className="orderDetailsPage-addressContainer">
@@ -91,9 +91,8 @@ const OrderDetailsPage = (props) => {
                 </div>
               </div>
               <div className="deliveryDate">
-                {/* {orderDetails.orderStatus[3].isCompleted &&
-                  `Delivered on ${formatDate2(orderDetails.orderStatus[3]?.date)}`} */}
-                20/10/2000
+                {orderDetails.orderStatus[3].isCompleted &&
+                  `Delivered on ${formatDate2(orderDetails.orderStatus[3]?.date)}`}
               </div>
             </div>
           </Card>

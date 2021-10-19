@@ -67,19 +67,4 @@ const Anchor = (props) => {
   );
 }
 
-const Breed = (props) => {
-  return (
-    <div className="breed">
-      <ul>
-        {props.breed?.map((item, index) => (
-          <li key={index}>
-            <Link to={item.to}>{item.name}</Link>
-            {props.breedIcon}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export { Modal, DropdownMenu, Anchor, Breed }
+export { Modal, DropdownMenu, Anchor }

@@ -154,6 +154,17 @@ html,
   .writeFeedback {
     width: 100% !important;
   }
+  .productDescriptionAllImgContainer {
+    justify-content: center !important;
+  }
+  // Checkout page
+  .checkoutLogin-container {
+    flex-direction: column !important;
+  }
+  .textField-container {
+    width: 97% !important;
+    margin: 0.5rem auto !important;
+  }
   // Order details page
   .deliveryItem-card {
     flex-direction: column !important;
@@ -165,7 +176,7 @@ html,
 
 @media screen and (max-width: 576px) {
   .option-item {
-    margin: 0 0.4rem !important;
+    margin: 0 0.45rem !important;
   }
   //background homepage
   .background__box {
@@ -217,6 +228,7 @@ html,
   .viewItemStatus-btn {
     width: 100% !important;
     box-sizing: border-box !important;
+    text-align: center;
   }
   // Order details page
   .orderTrack {

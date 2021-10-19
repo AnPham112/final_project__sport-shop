@@ -37,7 +37,7 @@ const OnlinePayment = ({ totalPrice }) => {
     return (
       <ThankCustomer
         to='/account/orders'
-        btnTitle='View your orders'
+        btnTitle='View your order'
       />
     );
   }
@@ -52,7 +52,6 @@ const OnlinePayment = ({ totalPrice }) => {
 
   return (
     <div className="onlinePayment-wrapper">
-      <div>Total: ${totalPrice}</div>
       <div
         className="payWithPaypal-btn"
         ref={paypalRef}

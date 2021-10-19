@@ -1,5 +1,9 @@
+.checkoutPageContainer {
+    max-width: 1200px;
+    margin: 2rem auto;
+}
 .checkoutContainer {
-    width: 100%;
+    margin: 0 15px;
 }
 .checkoutStep {
     box-sizing: border-box;
@@ -41,6 +45,9 @@
 .checkoutHeader.active .stepTitle {
     color: #fff;
     font-weight: 600;
+}
+.checkoutLogin-container {
+    display: flex;
 }
 .loggedInId {
     font-size: 12.5px;
@@ -116,16 +123,17 @@
     padding: 0.5rem 20px;
 }
 .checkoutLogin-btn {
-    background-color: #51c4d3;
+    background-color: #1466ea;
     border: 0;
     outline: none;
     font-size: 1rem;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     font-weight: 600;
     border-radius: 3px;
+    color: #fff;
 }
 .checkoutLogin-btn:hover {
-    background-color: #45aab8;
+    background-color: #125ace;
 }
 .orderConfirmationEmail-container {
     padding: 20px;
@@ -147,13 +155,13 @@
     border: 0;
     outline: none;
     color: #fff;
-    background-color: #51c4d3;
+    background-color: #1466ea;
     cursor: pointer;
     padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
 }
 .customerConfirmSubmit-btn:hover {
-    background-color: #45aab8;
+    background-color: #125ace;
 }
 .confirmOrderSummary-btn {
     padding: 1rem 1.5rem;

@@ -30,7 +30,7 @@ const ProductCard = ({ reviews, prod }) => {
       <span className="homePage-averageRating">{isNaN(averageStarRating) ? <span>The product has no ratings yet</span> : (averageStarRating).toFixed(2)}
         {isNaN(averageStarRating) ? <></> : <span><IoIosStar /></span>}
       </span>
-      <span className="totalReviews">({totalReviews})</span>
+      <span className="totalReviews">({totalReviews} reviews)</span>
       <span className="homePage-productDescription">{prod.description}</span>
       <Link
         className="homePage-card-btn"

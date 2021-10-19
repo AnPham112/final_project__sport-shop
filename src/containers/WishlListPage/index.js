@@ -5,14 +5,12 @@ import Layout from '../../components/Layout';
 import Card from '../../components/UI/Card';
 import './style.css';
 import WishListItem from './WishListItem';
-import { Alert } from 'react-bootstrap';
 
 const WishListPage = (props) => {
   const auth = useSelector((state) => state.auth);
   const wishList = useSelector((state) => state.wishList);
   const [wishListItems, setWishListItems] = useState(wishList.wishListItems);
   const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
 
   useEffect(() => {
     setWishListItems(wishList.wishListItems);
@@ -34,7 +32,7 @@ const WishListPage = (props) => {
   return (
     <Layout MenuHeader>
       <div className="wishListContainer">
-        <Card headerleft={`My wish list`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff' }}>
+        <Card headerleft={`My wish list`} style={{ width: '100%', backgroundColor: 'rgba(20, 45, 52, 0.9)', color: '#fff', margin: '0 0.5rem' }}>
           {Object.keys(wishListItems).map((key, index) => (
             <WishListItem
               key={index}

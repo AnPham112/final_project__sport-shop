@@ -35,9 +35,8 @@ const InStock = ({ inStock, product }) => {
 
   return (
     <p className="productInStock">In stock:&nbsp;
-      {
-        productLeft === 0 ? <span>Sold out</span> : <span>{productLeft}</span>
-      }</p>
+      {productLeft === 0 ? <span>Sold out</span> : <span>{productLeft}</span>}
+    </p>
   );
 }
 
