@@ -23,6 +23,9 @@ const ModalSignUp = (props) => {
     password: yup.string()
       .required('Password is required')
       .max(60, 'Password is too long'),
+    confirmPassword: yup.string()
+      .oneOf([yup.ref('password'), null], 'Password must match')
+      .required('Confirm password is required')
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -98,6 +101,19 @@ const ModalSignUp = (props) => {
                 />
                 {errors.password && (
                   <p className="err-message">{errors.password?.message}</p>
+                )}
+              </div>
+              <div className='login-form-container'>
+                <label htmlFor='confirmPassword' className='login-form__label'>Confirm password</label>
+                <input
+                  className='login-form__input'
+                  id='confirmPassword'
+                  type='password'
+                  name="confirmPassword"
+                  {...register("confirmPassword")}
+                />
+                {errors.confirmPassword && (
+                  <p className="err-message">{errors.confirmPassword?.message}</p>
                 )}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
