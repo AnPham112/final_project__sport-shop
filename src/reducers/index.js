@@ -5,7 +5,6 @@ import authReducer from './auth.reducer';
 import cartReducer from './cart.reducer';
 import userReducer from './user.reducer';
 import wishListReducer from './wishList.reducer';
-import reviewReducer from './review.reducer';
 import productHomePage from './productHomePage.reducer';
 import orderPublic from './orderPublic.reducer';
 
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
   wishList: wishListReducer,
-  review: reviewReducer,
   productHomePage: productHomePage,
   orderPublic: orderPublic
 });
