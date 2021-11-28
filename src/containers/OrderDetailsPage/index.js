@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import Card from '../../components/UI/Card';
 import Price from '../../components/UI/Price';
 import { generatePublicUrl } from '../../urlConfig';
+import moment from 'moment';
 import './style.css';
 
 const OrderDetailsPage = (props) => {
@@ -17,24 +18,6 @@ const OrderDetailsPage = (props) => {
     };
     dispatch(getOrder(payload));
   }, []);
-
-  const formatDate = (date) => {
-    if (date) {
-      const d = new Date(date);
-      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    }
-    return "";
-  };
-
-  const formatDate2 = (date) => {
-    const month = [
-      "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec",
-    ];
-    if (date) {
-      const d = new Date(date);
-      return `${month[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-    }
-  };
 
   if (!(orderDetails && orderDetails.address)) {
     return null;
@@ -84,7 +67,7 @@ const OrderDetailsPage = (props) => {
                       </div>
                       <div className="orderInfo">
                         <div className="status">{status.type}</div>
-                        <div className="date">{formatDate(status.date)}</div>
+                        <div className="date">{moment(status.date).format('YYYY-MM-DD')}</div>
                       </div>
                     </div>
                   ))}
@@ -92,7 +75,7 @@ const OrderDetailsPage = (props) => {
               </div>
               <div className="deliveryDate">
                 {orderDetails.orderStatus[3].isCompleted &&
-                  `Delivered on ${formatDate2(orderDetails.orderStatus[3]?.date)}`}
+                  `Delivered on ${moment(orderDetails.orderStatus[3]?.date).format("MMM Do YYYY")}`}
               </div>
             </div>
           </Card>

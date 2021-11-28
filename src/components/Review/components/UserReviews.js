@@ -1,30 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { productConstants } from '../../../actions/constants';
+import moment from 'moment';
 import './style.css';
 
-const UserReviews = ({ reviews, stars, product, colors, page }) => {
+
+const UserReviews = ({ reviews, stars, colors, page }) => {
+
   const startIndex = (page - 1) * productConstants.REVIEW_PER_PAGE;
   const selectedReviews = reviews.slice(startIndex, startIndex + productConstants.REVIEW_PER_PAGE);
 
-  const formatDate = (date) => {
-    if (date) {
-      const d = new Date(date);
-      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    }
-    return "";
-  };
-
-  const finalReviews = selectedReviews.filter((review) => {
-    return review.productId === product.productId;
-  });
-
   return (
     <div>
-      {finalReviews.map((review, index) => (
+      {selectedReviews.map((review, index) => (
         <div className="userReview-container" key={index}>
           <div>
-            <span className="reviewer">{review.writer?.firstName} {review.writer?.lastName}</span>
+            <span className="reviewer">Customer {index + 1}</span>
             {stars.map((_, index) => {
               const ratingValue = index + 1
               return (
@@ -39,7 +30,7 @@ const UserReviews = ({ reviews, stars, product, colors, page }) => {
             })}
             <span className="reviewContent">{review.content}</span>
           </div>
-          <div className="reviewTime">{formatDate(review.createdAt)}</div>
+          <div className="reviewTime">{moment(review.createdAt).format('YYYY-MM-DD')}</div>
         </div>
       ))}
     </div>

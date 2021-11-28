@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.scss';
+import './style.css';
 
 const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
   const [qty, setQty] = useState(cartItem.qty);
@@ -10,7 +10,7 @@ const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
     setIsDisabled(true);
     setTimeout(() => {
       setIsDisabled(false)
-    }, 1300);
+    }, 1200);
     setQty(qty + 1);
     onQuantityInc(_id, qty + 1);
   }
@@ -19,7 +19,7 @@ const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
     setIsDisabled(true);
     setTimeout(() => {
       setIsDisabled(false)
-    }, 1300);
+    }, 1200);
     if (qty <= 1) return;
     setQty(qty - 1);
     onQuantityDec(_id, qty - 1);

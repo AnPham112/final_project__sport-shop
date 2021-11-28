@@ -67,10 +67,10 @@ export const removeCartItem = (payload) => {
         dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
         dispatch(getCartItems());
       } else {
-        const { error } = res.data;
+        const { message } = res.data;
         dispatch({
           type: cartConstants.REMOVE_CART_ITEM_FAILURE,
-          payload: { error },
+          payload: { message },
         });
       }
     } catch (error) {

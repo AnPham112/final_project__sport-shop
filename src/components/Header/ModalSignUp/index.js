@@ -5,9 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const ModalSignUp = (props) => {
-  const {
-    visible, onClose, userSignup
-  } = props;
+  const { visible, onClose, userSignup } = props;
 
   const validationSchema = yup.object().shape({
     firstName: yup.string()

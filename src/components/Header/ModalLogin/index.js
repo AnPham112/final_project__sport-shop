@@ -5,9 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const ModalLogin = (props) => {
-  const {
-    visible, onClose, userLogin
-  } = props;
+  const { visible, onClose, userLogin } = props;
 
   const validationSchema = yup.object().shape({
     email: yup.string()
@@ -72,9 +70,7 @@ const ModalLogin = (props) => {
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button className="login-btn">Login</button>
               </div>
-
             </form>
-
           </div>
         </div>
       </div>

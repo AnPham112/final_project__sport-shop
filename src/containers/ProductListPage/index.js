@@ -7,13 +7,11 @@ import './style.css';
 const ProductListPage = (props) => {
   const renderProduct = () => {
     const params = getParams(props.location.search);
-    let content = null;
-    switch (params.type) {
-      case 'store':
-        content = <ProductStore {...props} />;
-        break;
+    if (params.type == 'store') {
+      return (
+        <ProductStore {...props} />
+      )
     }
-    return content;
   }
 
   return (
@@ -23,4 +21,4 @@ const ProductListPage = (props) => {
   )
 }
 
-export default ProductListPage
+export default ProductListPage;

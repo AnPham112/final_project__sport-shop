@@ -59,7 +59,8 @@ const ProductStore = (props) => {
                 }
               </Carousel>
             )
-              : <></>}
+              : <></>
+            }
           </Card>
         );
       })}

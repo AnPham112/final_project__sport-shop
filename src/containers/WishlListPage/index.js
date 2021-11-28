@@ -20,9 +20,6 @@ const WishListPage = (props) => {
     if (auth.authenticate) {
       dispatch(getWishListItems());
     }
-    if (!auth.authenticate) {
-      alert('You have to login to view your wishlist')
-    }
   }, [auth.authenticate]);
 
   const onRemoveWishListItem = (_id) => {

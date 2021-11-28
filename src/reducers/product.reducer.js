@@ -8,9 +8,8 @@ const initState = {
   page: {},
   error: null,
   productDetails: {},
-  loading: false,
   reviews: [],
-  message: null,
+  message: null
 }
 
 export default (state = initState, action) => {
@@ -26,95 +25,56 @@ export default (state = initState, action) => {
       }
       break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST:
-      state = {
-        ...state,
-        loading: true
-      }
+      state = { ...state }
       break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_SUCCESS:
       state = {
         ...state,
-        loading: false,
         productDetails: action.payload.productDetails
       }
       break;
     case productConstants.GET_PRODUCT_DETAILS_BY_ID_FAILURE:
       state = {
         ...state,
-        loading: false,
         error: action.payload.error
       }
       break;
     case productConstants.CREATE_REVIEW_REQUEST:
-      state = {
-        ...state,
-        loading: true
-      }
+      state = { ...state }
       break;
     case productConstants.CREATE_REVIEW_SUCCESS:
-      state = {
-        ...state,
-        loading: false
-      }
+      state = { ...state }
       break;
     case productConstants.CREATE_REVIEW_FAILURE:
       state = {
         ...state,
-        loading: false,
-        message: action.message
+        message: action.payload.message
       }
       break;
     case productConstants.GET_ALL_REVIEWS_REQUEST:
-      state = {
-        ...state,
-        loading: true,
-      }
-      break;
-    case productConstants.GET_ALL_REVIEWS_SUCCESS:
-      state = {
-        ...state,
-        loading: false,
-        reviews: action.payload.reviews
-      }
-      break;
-    case productConstants.GET_ALL_REVIEWS_FAILURE:
-      state = {
-        ...state,
-        loading: false,
-        error: action.payload.error
-      }
-      break;
-    case productConstants.CREATE_REVIEW_REQUEST:
       state = {
         ...state,
         loading: true
       }
       break;
-    case productConstants.CREATE_REVIEW_SUCCESS:
-      state = {
-        ...state,
-        loading: false
-      }
-      break;
-    case productConstants.GET_ALL_REVIEWS_REQUEST:
-      state = {
-        ...state,
-        loading: true,
-      }
-      break;
     case productConstants.GET_ALL_REVIEWS_SUCCESS:
       state = {
         ...state,
-        loading: false,
         reviews: action.payload.reviews
       }
       break;
     case productConstants.GET_ALL_REVIEWS_FAILURE:
       state = {
         ...state,
-        loading: false,
-        error: action.payload.error
+        error: action.payload.error,
+        loading: false
       }
+      break;
+    case productConstants.CREATE_REVIEW_REQUEST:
+      state = { ...state }
+      break;
+    case productConstants.CREATE_REVIEW_SUCCESS:
+      state = { ...state }
       break;
   };
   return state;

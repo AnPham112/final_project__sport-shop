@@ -58,7 +58,9 @@
 .cartItem-empty {
     font-size: 1rem;
     margin-left: 0.5rem;
-    color: #fd6a20;
+    color: red;
+    font-weight: 600;
+    text-align: center;
 }
 .content-table {
     border-collapse: collapse;

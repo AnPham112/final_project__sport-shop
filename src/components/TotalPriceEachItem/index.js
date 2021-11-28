@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
 const TotalPriceEachItem = ({ cartItem }) => {
   const { price, qty } = cartItem;
   const [totalPriceEachItem, setTotalPriceEachItem] = useState(price);
@@ -10,9 +9,7 @@ const TotalPriceEachItem = ({ cartItem }) => {
   }, [price, qty]);
 
   return (
-    <>
-      ${totalPriceEachItem}
-    </>
+    <>${totalPriceEachItem}</>
   );
 }
 export default TotalPriceEachItem;

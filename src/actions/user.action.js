@@ -103,7 +103,6 @@ export const getOrders = () => {
   };
 }
 
-// single order with complete info and delivery location
 export const getOrder = (payload) => {
   return async (dispatch) => {
     try {

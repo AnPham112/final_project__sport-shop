@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getHomeProducts, getReviews } from '../../actions';
+import { getHomeProducts } from '../../actions';
 import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard';
 import './style.scss';
 
 const HomePageProducts = (props) => {
   const productHomePage = useSelector((state) => state.productHomePage);
-  const product = useSelector((state) => state.product);
   const [products, setProducts] = useState([]);
-  const [reviews, setReviews] = useState([]);
   const dispatch = useDispatch();
 
   const breakPoints = [
@@ -23,22 +21,16 @@ const HomePageProducts = (props) => {
   useEffect(() => {
     dispatch(getHomeProducts());
     setProducts(productHomePage.products);
-  }, [products]);
-
-  useEffect(() => {
-    dispatch(getReviews());
-    setReviews(product.reviews);
-  }, [reviews]);
+  }, [productHomePage.products]);
 
   return (
     <div className="commonContainer">
-      <h3>Products</h3>
+      <h3>All products</h3>
       <Carousel breakPoints={breakPoints}>
-        {productHomePage.products?.map((prod, index) => (
+        {products?.map((prod, index) => (
           <ProductCard
             key={index}
             prod={prod}
-            reviews={product.reviews}
           />
         ))}
       </Carousel>

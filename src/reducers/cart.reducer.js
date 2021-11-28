@@ -2,30 +2,25 @@ import { cartConstants } from "../actions/constants";
 
 const initState = {
   cartItems: {},
-  updatingCart: false,
-  error: null
+  error: null,
+  message: null
 }
 
 export default (state = initState, action) => {
   switch (action.type) {
     case cartConstants.ADD_TO_CART_REQUEST:
-      state = {
-        ...state,
-        updatingCart: true
-      }
+      state = { ...state }
       break;
     case cartConstants.ADD_TO_CART_SUCCESS:
       state = {
         ...state,
-        cartItems: action.payload.cartItems,
-        updatingCart: false
+        cartItems: action.payload.cartItems
       }
       break;
     case cartConstants.ADD_TO_CART_FAILURE:
       state = {
         ...state,
-        updatingCart: false,
-        error: action.payload.error
+        message: action.payload.message
       }
       break;
     case cartConstants.RESET_CART:

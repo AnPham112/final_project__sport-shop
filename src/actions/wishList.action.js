@@ -50,7 +50,6 @@ export const addToWishList = (product) => {
     } else {
       localStorage.setItem('wishList', JSON.stringify(wishListItems));
     }
-    console.log('addToWishList:', wishListItems);
     dispatch({
       type: wishListConstants.ADD_TO_WISHLIST_SUCCESS,
       payload: { wishListItems }

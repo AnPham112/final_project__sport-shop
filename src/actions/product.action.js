@@ -1,5 +1,6 @@
 import axios from "../helpers/axios";
 import { productConstants } from "./constants";
+import { toast } from 'react-toastify';
 
 export const getProductsBySlug = (slug) => {
   return async dispatch => {
@@ -26,30 +27,24 @@ export const getProductDetailsById = (payload) => {
       });
     } catch (error) {
       console.log(error);
-      // const { error } = res.data
-      // dispatch({
-      //   type: productConstants.GET_PRODUCT_DETAILS_BY_ID_FAILURE,
-      //   payload: { error }
-      // });
     }
   }
 }
 
-export const getReviews = () => {
+export const getReviews = (payload) => {
   return async dispatch => {
     dispatch({ type: productConstants.GET_ALL_REVIEWS_REQUEST });
     try {
-      const res = await axios.get('/comment/getReviews');
+      const res = await axios.post('/comment/getReviews', payload);
       if (res.status === 200) {
+        const { reviews } = res.data;
         dispatch({
           type: productConstants.GET_ALL_REVIEWS_SUCCESS,
-          payload: res.data
+          payload: { reviews }
         });
       } else {
-        dispatch({
-          type: productConstants.GET_ALL_REVIEWS_FAILURE,
-          error: { error: res.data.error }
-        })
+        const { error } = res.data;
+        dispatch({ type: productConstants.GET_ALL_REVIEWS_FAILURE, error })
       }
     } catch (error) {
       console.log(error);
@@ -68,7 +63,8 @@ export const createReview = (payload) => {
       }
     } catch (error) {
       const { message } = error.response.data;
-      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE, message });
+      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE, message })
+      toast.info("You have to login to post feedback", { autoClose: 1500, position: toast.POSITION.TOP_CENTER, theme: 'dark' })
     }
   }
 }

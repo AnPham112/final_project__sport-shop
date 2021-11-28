@@ -55,7 +55,7 @@ const Header = (props) => {
             },
             {
               label: "Logout",
-              to: ``,
+              to: '',
               icon: <IoIosLogOut />,
               onClick: logout
             },

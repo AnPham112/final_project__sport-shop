@@ -319,7 +319,7 @@ const CheckoutPage = (props) => {
             (
               <AddressForm
                 onSubmitForm={onAddressSubmit}
-                onCancel={() => { }} />
+              />
             ) : auth.authenticate ?
               (
                 <CheckoutStep

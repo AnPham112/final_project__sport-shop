@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetailsById, addToCart, getReviews, createReview } from '../../actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '../../components/Layout';
 import { generatePublicUrl } from '../../urlConfig';
 import { IoMdCart } from 'react-icons/io';
@@ -32,13 +34,14 @@ const ProductDetailsPage = (props) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getReviews());
+    const payload = { id: props.match.params.productId }
+    dispatch(getReviews(payload));
     setReviews(product.reviews);
-  }, [reviews]);
+  }, [product.reviews]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(product.reviews.length / productConstants.REVIEW_PER_PAGE));
-  }, [product.reviews]);
+  }, [reviews]);
 
   const stars = Array(5).fill(0);
   const colors = {
@@ -55,6 +58,21 @@ const ProductDetailsPage = (props) => {
 
   if (Object.keys(product.productDetails).length === 0) {
     return null;
+  }
+
+  const onHandleSendFeedback = (e) => {
+    e.preventDefault();
+    const payload = {
+      rating: rating,
+      content: comment,
+      writer: auth.user._id,
+      id: props.match.params.productId
+    }
+    dispatch(createReview(payload))
+      .then(() =>
+        setRating(0),
+        setComment('')
+      );
   }
 
   return (
@@ -121,8 +139,7 @@ const ProductDetailsPage = (props) => {
                 />
               </div>
               <AverageStarRating
-                reviews={product.reviews}
-                product={props.match.params}
+                reviews={reviews}
               />
               <span className="price">
                 ${product.productDetails.price}
@@ -174,28 +191,14 @@ const ProductDetailsPage = (props) => {
                   />
                   <button
                     className="sendFeedback-btn"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const payload = {
-                        rating: rating,
-                        content: comment,
-                        writer: auth.user._id,
-                        productId: props.match.params.productId
-                      }
-                      dispatch(createReview(payload))
-                        .then(() =>
-                          setRating(0),
-                          setComment('')
-                        );
-                    }}>
+                    onClick={onHandleSendFeedback}>
                     Send feedback
                   </button>
-
                 </form>
               </div>
               <h3>Ratings & Reviews</h3>
               <UserReviews
-                reviews={product.reviews}
+                reviews={reviews}
                 stars={stars}
                 product={props.match.params}
                 colors={colors}
@@ -208,6 +211,7 @@ const ProductDetailsPage = (props) => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Layout >
   );
 }

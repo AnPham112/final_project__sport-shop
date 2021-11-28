@@ -3,16 +3,18 @@ import './style.css';
 import Layout from '../../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
-import { addToCart, getCartItems, removeCartItem } from '../../actions';
+import { addToCart, addToWishList, getCartItems, removeCartItem } from '../../actions';
 import PriceDetails from '../../components/PriceDetails';
 import { generatePublicUrl } from '../../urlConfig';
 import TotalPriceEachItem from '../../components/TotalPriceEachItem';
 import CartActions from '../../components/CartActions';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = (props) => {
   const auth = useSelector(state => state.auth);
   const cart = useSelector(state => state.cart);
-  const [cartItems, setCartItems] = useState(cart.cartItems);
+  const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,9 +40,16 @@ const CartPage = (props) => {
 
   const onRemoveCartItem = (_id) => {
     if (!auth.authenticate) {
-      alert('You have to login to remove products');
+      toast.info("You have to login to delete a product", { autoClose: 1500, position: toast.POSITION.TOP_CENTER, theme: 'dark' });
     }
     dispatch(removeCartItem({ productId: _id }));
+  }
+
+  const onAddToWishList = (_id, name, price, img) => {
+    if (!auth.authenticate) {
+      toast.info("You have to login to add a product to wishlist", { autoClose: 1500, position: toast.POSITION.TOP_CENTER, theme: 'dark' });
+    }
+    dispatch(addToWishList({ _id, name, price, img }));
   }
 
   if (props.onlyCartItems) {
@@ -88,6 +97,7 @@ const CartPage = (props) => {
                       <CartActions
                         key={index}
                         cartItem={cartItems[key]}
+                        onAddToWishList={onAddToWishList}
                         onRemoveCartItem={onRemoveCartItem}
                       />
                     </td>
@@ -148,6 +158,7 @@ const CartPage = (props) => {
                       key={index}
                       cartItem={cartItems[key]}
                       onRemoveCartItem={onRemoveCartItem}
+                      onAddToWishList={onAddToWishList}
                     />
                   </td>
                 </tr>
@@ -170,8 +181,9 @@ const CartPage = (props) => {
             onClick={() => props.history.push(`/checkout`)}
           >Place order</button>
         </div>
+        <ToastContainer />
       </div>
-    </Layout >
+    </Layout>
   );
 }
 

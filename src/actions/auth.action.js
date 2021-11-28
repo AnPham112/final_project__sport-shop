@@ -15,13 +15,6 @@ export const signup = (user) => {
           title: 'Success!',
           text: 'sign up successfully'
         });
-        // const { token, user } = res.data;
-        // localStorage.setItem("token", token);
-        // localStorage.setItem("user", JSON.stringify(user));
-        // dispatch({
-        //   type: authConstants.LOGIN_SUCCESS,
-        //   payload: { token, user }
-        // });
       } else {
         const { error } = res.data;
         dispatch({
