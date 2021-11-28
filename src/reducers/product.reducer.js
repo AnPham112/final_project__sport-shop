@@ -48,7 +48,7 @@ export default (state = initState, action) => {
     case productConstants.CREATE_REVIEW_FAILURE:
       state = {
         ...state,
-        message: action.message
+        message: action.payload.message
       }
       break;
     case productConstants.GET_ALL_REVIEWS_REQUEST:

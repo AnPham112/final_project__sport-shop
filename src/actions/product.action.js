@@ -63,7 +63,7 @@ export const createReview = (payload) => {
       }
     } catch (error) {
       const { message } = error.response.data;
-      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE, message })
+      dispatch({ type: productConstants.CREATE_REVIEW_FAILURE, payload: { message } })
       toast.info("You have to login to post feedback", { autoClose: 1500, position: toast.POSITION.TOP_CENTER, theme: 'dark' })
     }
   }
